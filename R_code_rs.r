@@ -6,7 +6,7 @@ library(raster)
 # settaggio cartella di lavoro, file nella cartella zip scaricata, importare cartella   
 setwd("/Users/alicegiacomelli/desktop/lab")
 
-# importazione immagine e assegnazione 
+# importazione immagine e assegnazione, parto dall'ultima immagine cronologica 
 l2011 <- brick("p224r63_2011.grd")
 
 # vedere info immagine
