@@ -85,3 +85,4 @@ plot(l2011$B3_sre, col=clr)
 # NIR
 clnir <- colorRampPalette(c("red", "orange", "yellow")) (100)
 plot(l2011$B4_sre, col=clnir)
+
