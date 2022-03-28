@@ -12,13 +12,19 @@ l2011 <- brick("p224r63_2011.grd")
 # vedere info immagine
 l2011
 
-# vedere grafica 
+# vedere plot 
 plot(l2011)
 
 # colorazione e assegnazione, 100 sfumature massime di colore 
 cl <- colorRampPalette(c("black", "grey", "light grey")) (100)
 
-# vedere grafica con nuova colorazione 
+# vedere plot con nuova colorazione 
 plot (l2011, col=cl)
 
 # dev.off() per problemi con la grafica 
+
+# Landsat ETM+
+# b1 = blu
+# b2 = verde
+# b3 = rosso
+# b4 = infrarosso vicini NIR 
