@@ -86,3 +86,53 @@ plot(l2011$B3_sre, col=clr)
 clnir <- colorRampPalette(c("red", "orange", "yellow")) (100)
 plot(l2011$B4_sre, col=clnir)
 
+# plot l2011 nella banda NIR 
+plot(l2011$B4_sre)
+# colore 
+clnir <- colorRampPalette(c("red", "orange", "yellow")) (100)
+plot(l2011$B4_sre, col=clnir)
+
+# plot RGB 
+plotRGB(l2011, r=3, g=2, b=1, stretch="lin")
+
+# plot RGB con NIR - la banda del blu viene sostituita e tutto slitta di 1 
+plotRGB(l2011, r=4, g=3, b=2, stretch="lin")
+# plot RGB - verde
+plotRGB(l2011, r=3, g=4, b=2, stretch="lin")
+# plot RGB - blu (giallo zone senza vegetazione, suolo nudo dovuto a agricoltura) 
+plotRGB(l2011, r=3, g=2, b=4, stretch="lin")
+
+# plot RGB - stretch="hist" - aumento della gamma di colori forte 
+plotRGB(l2011, r=3, g=4, b=2, stretch="hist")
+
+# multiframe con visualizzazione RGB 
+# linear stretch - RGB visibile 
+# histogram stretch 
+par(mfrow=c(2,1))
+plotRGB(l2011, r=3, g=2, b=1, stretch="lin")
+plotRGB(l2011, r=3, g=4, b=2, stretch="hist")
+
+# immagine del 1988
+l1988 <- brick("p224r63_1988.grd")
+
+# info immagine 
+l1988
+
+# multiframe 1988 e 2011
+par(mfrow=c(2,1))
+plotRGB(l1988, r=4, g=3, b=2, stretch="lin")
+plotRGB(l2011, r=4, g=3, b=2, stretch="lin")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
