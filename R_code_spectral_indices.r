@@ -63,3 +63,15 @@ cld <- colorRampPalette(c('blue','white','red'))(100)
 dev.off()
 # plot differenza DVI
 plot(dvi_dif, col=cld)
+
+# day 2
+
+# Range DVI (8 bit): -255 a 255
+# Range NDVI normalizzato (8 bit): -1 a 1 
+
+# Range DVI (16 bit): -65535 a 65535
+# Range NDVI standardizzato (16 bit): -1 a 1
+
+# NDVI può essere usato anche con immagini con risoluzione radiometrica differenti 
+# risoluzione radiometrica differenti = quanti bit ci sono a disposizione all'interno di una immagine
+
