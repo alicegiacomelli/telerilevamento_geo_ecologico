@@ -3,6 +3,12 @@ library(raster)
 # install.packages("rgdal")
 library(rgdal)
 
+# install.packages("RStoolbox")
+library(RStoolbox)
+
+# install.packages("rasterdiv")
+library(rasterdiv)
+
 # settaggio cartella 
 setwd("/Users/alicegiacomelli/desktop/lab")
 
@@ -74,4 +80,49 @@ plot(dvi_dif, col=cld)
 
 # NDVI può essere usato anche con immagini con risoluzione radiometrica differenti 
 # risoluzione radiometrica differenti = quanti bit ci sono a disposizione all'interno di una immagine
+
+# NDVI 
+
+# 1992
+dvi1992 = l1992[[1]] - l1992[[2]]
+ndvi1992 = dvi1992 / (l1992[[1]] + l1992[[2]])
+# oppure 
+ndvi1992 = (l1992[[1]] -  l1992[[2]]) / (l1992[[1]] + l1992[[2]])
+
+# info 
+ndvi1992
+
+# colorazione 
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) 
+plot(ndvi1992, col=cl)
+
+# multiframe con il polt RGB sopra e plot NDVI sotto 
+par(mfrow=c(2,1))
+plotRGB(l1992, r=1, g=2, b=3, stretch="lin")
+plot(ndvi1992, col=cl)
+
+# 2006 
+dvi2006 = l2006[[1]] - l2006[[2]]
+ndvi2006 = dvi2006 / (l2006[[1]] + l2006[[2]])
+
+# multiframe con NDVI 1992 sopra e NDVI 2006 sotto
+par(mfrow=c(2,1))
+plot(ndvi1992, col=cl)
+plot(ndvi2006, col=cl)
+
+
+# install.packages("RStoolbox")
+# library(RStoolbox)
+
+# spectralIndices automatico con library(RStoolbox)
+si1992 <- spectralIndices(l1992, green=3, red=2, nir=1)
+
+# plot spectralIndices - tutti gli indici che si possono calcolre per una immagine 
+plot(si1992, col=cl)
+
+# install.packages("rasterdiv")
+# library(rasterdiv)
+
+# plot copNDVI
+plot(copNDVI)
 
