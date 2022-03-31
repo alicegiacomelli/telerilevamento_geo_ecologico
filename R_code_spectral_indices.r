@@ -110,6 +110,7 @@ par(mfrow=c(2,1))
 plot(ndvi1992, col=cl)
 plot(ndvi2006, col=cl)
 
+# spectral indices
 
 # install.packages("RStoolbox")
 # library(RStoolbox)
@@ -120,9 +121,10 @@ si1992 <- spectralIndices(l1992, green=3, red=2, nir=1)
 # plot spectralIndices - tutti gli indici che si possono calcolre per una immagine 
 plot(si1992, col=cl)
 
+# copNDVI
+
 # install.packages("rasterdiv")
 # library(rasterdiv)
 
 # plot copNDVI
 plot(copNDVI)
-
