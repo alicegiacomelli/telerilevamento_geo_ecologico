@@ -28,3 +28,44 @@ plot(lst2000, col=cl)
 plot(lst2005, col=cl)
 plot(lst2010, col=cl)
 plot(lst2015, col=cl)
+
+# importazione unica per 4 layer 
+
+# al posto di fare il multiframe
+
+# creare lista dei file
+# pattern in comune 
+# assegnazione 
+rlist <- list.files(pattern="lst")
+rlist
+
+# funzione raster all'intera lista di file 
+# assegnazione 
+import <- lapply(rlist, raster)
+import
+
+# blocco comune di tutti i dati 
+# stack 
+# assegnazione 
+tgr <- stack(import)
+tgr 
+
+# plot 
+plot(tgr, col=cl)
+
+# plot 1 banda 
+plot(tgr[[1]], col=cl)
+
+# plot RGB 
+# vedere più bande insieme nella stessa immagine 
+# red = 2000
+# green = 2005
+# blue = 2010
+# stretch perchè ci sono 16 bit 
+plotRGB(tgr, r=1, g=2, b=3, stretch="lin")
+
+
+
+
+
+
