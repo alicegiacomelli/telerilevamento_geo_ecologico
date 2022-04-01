@@ -1,0 +1,30 @@
+library(raster)
+
+#settaggio cartella 
+setwd("/Users/alicegiacomelli/Desktop/lab/greenland") 
+
+# importazione singolo layer tramite funzione raster 
+raster("lst_2000.tif")
+# immagine a 16 bit 
+
+# assegnazione immagine
+lst2000 <- raster("lst_2000.tif")
+lst2000
+
+# plot immagine
+plot(lst2000)
+
+# importazione dei singoli layer e assegnazioe 
+lst2005 <- raster("lst_2005.tif")
+lst2010 <- raster("lst_2010.tif")
+lst2015 <- raster("lst_2015.tif")
+
+# palette colori 
+cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
+
+# multiframe con 4 dati 
+par(mfrow=c(2,2))
+plot(lst2000, col=cl)
+plot(lst2005, col=cl)
+plot(lst2010, col=cl)
+plot(lst2015, col=cl)
