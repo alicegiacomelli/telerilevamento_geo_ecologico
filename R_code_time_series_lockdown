@@ -1,0 +1,49 @@
+# Esempio 2: diminuzione NO2 durante il lockdown 
+
+library(raster)
+
+# settaggio cartella 
+setwd("/Users/alicegiacomelli/Desktop/lab/greenland")
+
+# importare 1 dato con raster layer (importa solo il primo layer)
+# si potrebbe importare 1 dato anche con brick (importo tutti i layer RGB)
+en01 <- raster("EN_0001.png")
+
+# info immagine 
+en01
+
+# colorazione palette 
+cl <- colorRampPalette(c('red','orange','yellow'))(100)
+
+# plot con colorazione cl 
+plot(en01, col=cl)
+
+# importiamo 2° set - en13
+en13 <- raster("EN_0013.png")
+
+# info immagine 
+en13
+
+# plot con colorazione cl 
+plot(en13, col=cl)
+
+# importare tutto il dataset insieme 
+# list.files
+# lapply
+# stack 
+
+# lista - list.files  
+# pattern in comune 
+rlist <- list.files(pattern="EN")
+rlist
+
+# importazione - lapply(X, FUN) (applicare funzione raster)
+rimp <- lapply(rlist, raster)
+rimp
+
+# stack 
+en <- stack(rimp)
+en 
+
+# plot 
+plot(en, col=cl)
