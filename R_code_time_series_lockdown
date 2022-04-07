@@ -47,3 +47,24 @@ en
 
 # plot 
 plot(en, col=cl)
+
+
+# plot EN01 e EN13 
+
+# metodo 1 - multiframe 
+par(mfrow=c(1,2))
+plot(en01, col=cl)
+plot(en13, col=cl)
+
+dev.off()
+
+# metodo 2 - stack 
+en113 <- stack(en[[1]], en[[13]])
+plot(en113, col=cl)
+
+# differenza 
+# palette
+# plot
+difen <- en[[1]] - en[[13]]
+cldif <- colorRampPalette(c('blue','white','red'))(100)
+plot(difen, col=cldif)
