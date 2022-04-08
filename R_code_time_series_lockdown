@@ -3,7 +3,7 @@
 library(raster)
 
 # settaggio cartella 
-setwd("/Users/alicegiacomelli/Desktop/lab/greenland")
+setwd("/Users/alicegiacomelli/Desktop/lab/en")
 
 # importare 1 dato con raster layer (importa solo il primo layer)
 # si potrebbe importare 1 dato anche con brick (importo tutti i layer RGB)
@@ -68,3 +68,9 @@ plot(en113, col=cl)
 difen <- en[[1]] - en[[13]]
 cldif <- colorRampPalette(c('blue','white','red'))(100)
 plot(difen, col=cldif)
+
+
+# plot RGB di 3 file 
+# stretch lin
+plotRGB(en, r=1, g=7, b=13, stretch="lin")
+
