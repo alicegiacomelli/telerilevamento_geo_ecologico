@@ -27,6 +27,7 @@ en13
 # plot con colorazione cl 
 plot(en13, col=cl)
 
+
 # importare tutto il dataset insieme 
 # list.files
 # lapply
