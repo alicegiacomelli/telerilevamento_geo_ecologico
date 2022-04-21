@@ -87,4 +87,8 @@ par(mfrow=c(2,1))
 plot(gcclass4$map, col=clc)
 plotRGB(gc, r=1, g=2, b=3, stretch="hist")
 
+# stack per visualizzazione (avere immagini della stessa dimensione)
+st <- stack(gc, gcclass4$map)
+plot(st) 
+
 
