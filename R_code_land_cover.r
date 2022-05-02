@@ -7,6 +7,7 @@ library(RStoolbox)
 library(ggplot2)
 
 # install.packages("patchwork")
+# info: https://patchwork.data-imaginist.com/
 library(patchwork)
 
 # install.packages("gridExtra")
@@ -48,7 +49,10 @@ p1 + p2 # patchwork
 # mettere plot uno sopra l'altro 
 p1/p2
 
-
+# classificazione 
+# unsuperClass
+l92c <- unsuperClass(l92, nClasses=2)
+l92c
 
 
 
