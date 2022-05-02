@@ -1,5 +1,6 @@
 # creazione mappe land cover 
 
+# librerie 
 library(raster)
 library(RStoolbox) 
 
@@ -49,18 +50,35 @@ p1 + p2 # patchwork
 # mettere plot uno sopra l'altro 
 p1/p2
 
-# classificazione 
+# classificazione l92 con 2 classi 
 # unsuperClass
 l92c <- unsuperClass(l92, nClasses=2)
 l92c
 
+dev.off()
 
+# mappa calassificazione l92c 
+plot(l92c$map)
+# classe 1 = terreni agricoli (+ acqua) 
+# classe 2 = foresta
 
+# classificazione l06 con 2 classi
+l06c <- unsuperClass(l06, nClasses=2)
+l06c
+# mappa classificazione l06c
+plot(l06c$map)
+# classe 1 = foresta
+# classe 2 = terreni agricoli (+ acqua)
 
+# frequenza di pixel appartenenti alla classe foresta 
+# generare tabella di frequenza 
 
+# l92c
+freq(l92c$map)
+# classe 1 = 36072 pixel
+# classe 2 = 305220 pixel
 
-
-
-
-
-
+# l06c
+freq(l06c$map)
+# classe 1 = 178730 pixel
+# classe 2 = 163996 pixel
