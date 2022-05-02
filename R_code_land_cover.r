@@ -11,9 +11,6 @@ library(ggplot2)
 # info: https://patchwork.data-imaginist.com/
 library(patchwork)
 
-# install.packages("gridExtra")
-library(gridExtra)
-
 # set working directory 
 # settaggio cartella 
 setwd("/Users/alicegiacomelli/Desktop/lab/")
