@@ -38,3 +38,24 @@ g1/g2
 nir <- sen[[1]]
 nir 
 
+sd3 <- focal(nir, matrix(1/9, 3, 3), fun=sd
+# nir : immagine
+# matrice formata da 3*3 pixel, matrice : 1/9
+# colonne : 3
+# righe : 3
+# funzione : deviazione standard sd      
+
+# palette 
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+# plot della variabilità con palette 
+plot(sd3, col=clsd)
+             
+# plot ggplot
+ggplot() + 
+geom_raster(sd3, mapping=aes(x=x, y=y, fill=layer))
+# immagine : sd3
+# colore : fill, strato che abbiamo calcolato quindi layer 
+
+# viridis
+             
