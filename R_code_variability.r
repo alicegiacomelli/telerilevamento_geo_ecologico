@@ -2,6 +2,7 @@ library(raster)
 library(RStoolbox) 
 library(ggplot2) 
 library(patchwork)
+library(viridis)
 
 # set working directory
 setwd("/Users/alicegiacomelli/Desktop/lab/")
@@ -58,4 +59,29 @@ geom_raster(sd3, mapping=aes(x=x, y=y, fill=layer))
 # colore : fill, strato che abbiamo calcolato quindi layer 
 
 # viridis
+# library(viridis)             
+ggplot() + 
+geom_raster(sd3, mapping=aes(x=x, y=y, fill=layer))+
+scale_fill_viridis() +
+ggtitle("Standard deviation by viridis package")
+
+# cividis 
+ggplot() + 
+geom_raster(sd3, mapping =aes(x=x, y=y, fill=layer)) + 
+scale_fill_viridis(option = "cividis") +
+ggtitle("Standard deviation by viridis package")
+             
+# magma
+# lavora anche su colorazioni intermedie 
+ggplot() + 
+geom_raster(sd3, mapping =aes(x=x, y=y, fill=layer)) + 
+scale_fill_viridis(option = "magma") +
+ggtitle("Standard deviation by viridis package")
+
+# inferno
+ggplot() + 
+geom_raster(sd3, mapping =aes(x=x, y=y, fill=layer)) + 
+scale_fill_viridis(option = "inferno") +
+ggtitle("Standard deviation by viridis package")
+             
              
