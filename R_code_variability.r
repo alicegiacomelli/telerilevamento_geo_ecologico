@@ -84,4 +84,6 @@ geom_raster(sd3, mapping =aes(x=x, y=y, fill=layer)) +
 scale_fill_viridis(option = "inferno") +
 ggtitle("Standard deviation by viridis package")
              
-             
+# stesso calcolo con finestra 7*7
+# matrice 7             
+sd7 <- focal(nir, w=matrix(1/49, 7, 7), fun=sd)
