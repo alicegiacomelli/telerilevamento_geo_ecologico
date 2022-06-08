@@ -1,0 +1,9 @@
+# R code variability 2 - Using PC components
+
+library(raster)
+library(RStoolbox)
+
+# set working directory 
+
+# importazione immagine con brick 
+
