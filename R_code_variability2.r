@@ -115,12 +115,26 @@ sd5 <- focal(pc1, matrix(1/25, 5, 5), fun=sd)
 # matrice 5*5
 # singolo pixel 1 su 25 
 
+# assegnazione immagine 
+# libreria colori inferno
 im4 <- ggplot() +
 geom_raster(sd5, mapping=aes(x=x, y=y, fill=layer)) +
 scale_fill_viridis(option="inferno")
 
+# visualizzazione immagine 3*3 e 5*5
 im3 + im4
 
-# aumento finestra di calcolo = aumenta varibilità 
+# calcolo variabilità con finstra 7*7
+sd7 <- focal(pc1, matrix(1/49, 7, 7), fun=sd)
+
+# assegnazione immagine 
+# libreria colori inferno
+im5 <- ggplot() +
+geom_raster(sd7, mapping=aes(x=x, y=y, fill=layer)) +
+scale_fill_viridis(option="inferno")
+
+# viasualizzazione 3*3, 5*5, 7*7
+im3 + im4 + im5
+
 
 
