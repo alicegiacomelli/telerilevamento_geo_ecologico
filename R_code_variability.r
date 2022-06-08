@@ -1,8 +1,8 @@
-library(raster)
-library(RStoolbox) 
-library(ggplot2) 
-library(patchwork)
-library(viridis)
+library(raster) # gestione immagini 
+library(RStoolbox) # visualizzazione e analisi dati satellitari (calcolo variabilità)
+library(ggplot2) # visualizzazione dati in modo potente 
+library(patchwork) # unire più plot di ggplot 
+library(viridis) # scale di colore 
 
 # set working directory
 setwd("/Users/alicegiacomelli/Desktop/lab/")
@@ -14,7 +14,10 @@ sen <- brick("sentinel.png")
 sen
 
 # plot con ggRGB 
-ggRGB(sen, 1, 2, 3, stretch="lin")
+# banda 1 = NIR
+# banda 2 = red
+# banda 3 = green 
+ggRGB(sen, r=1, g=2, b=3, stretch="lin")
 # oppure 
 ggRGB(sen, 1, 2, 3)
 # stretch viene messo automaticamente 
@@ -32,6 +35,9 @@ g1 + g2
 
 # unire 2 plot, uno sopra l'altro
 g1/g2
+
+# 4 plot
+(g1+g2)/(g1+g2)
 
 ##### variabilità = deviazione standard #####
 
@@ -59,7 +65,8 @@ geom_raster(sd3, mapping=aes(x=x, y=y, fill=layer))
 # colore : fill, strato che abbiamo calcolato quindi layer 
 
 # viridis
-# library(viridis)             
+# library(viridis)
+# scale () senza argomento, legenda di default viridis             
 ggplot() + 
 geom_raster(sd3, mapping=aes(x=x, y=y, fill=layer))+
 scale_fill_viridis() +
