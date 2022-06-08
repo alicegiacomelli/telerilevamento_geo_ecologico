@@ -1,5 +1,6 @@
 # R code per visualizzare dati Lidar 
 # creare un chm
+# visualizzare point cloud 
 
 library(raster)
 library(ggplot2)
