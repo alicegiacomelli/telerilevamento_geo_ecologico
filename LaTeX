@@ -1,0 +1,146 @@
+% da R a LaTeX
+% funzione(arg1, argm2,...)
+% # commento
+
+% \funzione{}
+% commenti in LaTeX
+
+
+\documentclass[a4paper, 12pt]{article}
+% {} per definire la classe 
+% [] carattere e grandezza
+% \ Font size 
+
+%%%%%%%%%%%%%%%%%%%
+% Pacchetti:
+
+\usepackage[utf8]{inputenc}
+% caricare pacchetti, in R: Library()
+% [] definisce le strutture 
+% [utf8] tutti i tipi di carattere 
+
+\usepackage{graphicx} 
+% pacchetto per parti grafiche 
+
+\usepackage{color}
+% pacchetto per colori 
+
+\usepackage{hyperref}
+% per collegamenti 
+
+\usepackage{lineno}
+\linenumbers
+% numeri alle righe 
+
+%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\tr}{\textcolor{red}}
+% assegnazione 
+
+\title{My first document in LaTeX} % LaTeX come simbolo 
+\author{Alice Giacomelli}
+\date{}
+% scriviamo noi la data {}
+% solo {} la data non c'è
+% cancellare la data o aggiungendo %, la data è in automatico (ultima compilazione)
+
+
+\begin{document}
+% funzione che fa iniziare qualcosa 
+
+\maketitle
+% mette titolo e autore 
+
+\tableofcontents
+% indice con link 
+
+% come si compone un articolo:
+% Abstract
+% Keywords 
+
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduzione} 
+% (mettere lo scopo "The aim of this paper")
+
+\textcolor{red}{Within the quadrangle scheme chosen to represent high} resolution data acquired by Dawn at Vesta, the Av-9 Numisia
+quadrangle is located in the equatorial region, extending from
+22 to 22 degrees of latitude and from 216 to 288 degrees of
+longitude. \\ % aggiunge una riga 
+% colorare solo una parte di testo 
+
+\noindent The main feature in the study area is the Vestalia Terra region, ahigh topographic region with an elevation of about 10 km abovethe surrounding areas. The scarp in the northern sector
+of the quadrangle is sub-planar in shape and shows slopes of up to
+more than 20. % non spazio davanti quando si va a capo.
+
+\smallskip % lascia meno di una riga 
+The geologic history of Numisia has been presented through
+several interpretations, indicating a complex evolutionary scenario
+of the area. The most important geologic features of Numisia are represented by the main craters Numisia, Cornelia, Fabia, Teia and Drusilla, the Vestalia Terra plateau, the Brumalia Tholus hill and the dark material aligned along aribbon like geometry, named the Dark Ribbon. 
+
+\bigskip % maggiore spazio 
+The main craters in the quadrangle are Cornelia, Numisia, Dru- silla, Teia and Fabia. Both dark and bright material is present on the walls of Cornelia, Numisia, and Drusilla. The ejecta of Fabia and Teia are composed of bright material with the presence of diogenitic material.
+
+
+% \tiny{testo} cambia carattere 
+In this paper we present the mineralogic mapping of the surface composition of the Numisia quadrangle of Vesta using hyperspec- tral data from VIR, in order to develop a more complete view on the geologic evolution of this quadrangle of Vesta.
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\section{Area di studio} 
+
+The Visible and Infrared Mapping Spectrometer (VIR) mapped the mineralogic (Figure \ref{fig:quarzo}) response of the surface of Vesta, with a resolution ranging from 700 to about 100 m per pixel. The surface is domi- nated by a howardite-type composition, and is more diogenitic or eucritic in some locations.
+
+% inserire figura 
+% serve pacchetto graphicx
+\begin{figure}
+    \centering
+    % centrare immagine
+    \includegraphics[width=0.3\textwidth]{Quartz_oisan.jpg} 
+    % 0.3 rispetto alla dimensione del testo 
+    \caption{Quarzo}
+    \label{fig:quarzo} 
+    % etichetta, riferimento per il testo
+\end{figure}
+
+\%50 
+% per mettere percentuale 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Metodi}  
+Dalle formule al codice!
+
+\subsection{Formule}
+Formula utilizzata
+
+\begin{equation}
+   F = \sqrt[3]{G \times \frac{m_{1} \times m_{2}}{d^2}}
+   % \frac frazione 
+   % _ per pedice tra {}
+   % ^ apice tra {}
+   % \times per moltiplicazione 
+   % \sqrt per radice quadrata tra {}
+   % \sqrt[3] per radice cubica 
+\end{equation}
+
+\begin{equation}
+   F = \frac{\sqrt[3]{G \times \frac{m_{1} \times m_{2}}{d^2}}}{p(x) \times \log{p(x)}
+   % \frac frazione 
+   % \log per logaritmo 
+  
+\end{equation}
+
+\subsection{Codice}
+Codice utilizzato 
+
+\section{Risultati}
+
+\section{Discussione}
+
+% Conclusione
+% Bibliografia 
+
+
+
+\end{document}
+% funzione che fa finire il documento 
