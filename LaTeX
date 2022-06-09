@@ -35,6 +35,9 @@
 \usepackage{listings}
 % per caricare codice 
 
+\usepackage{setspace}
+% per interlinea doppia
+
 %%%%%%%%%%%%%%%%%%%
 
 \newcommand{\tr}{\textcolor{red}}
@@ -57,13 +60,36 @@
 \tableofcontents
 % indice con link 
 
-% come si compone un articolo:
-% Abstract
-% Keywords 
+\doublespacing
+%interlinea doppia 
 
 %%%%%%%%%%%%%%%%%%%%
 
-\section{Introduzione} 
+% come si compone un articolo:
+% 1. Abstract
+% 2. Keywords 
+% 3. Introduzione 
+% 4. Area di studio
+% 5. Metodi
+% 6. Risultati
+% 7. Discussioni
+% 8. Conclusione
+% 9. Bibliografia 
+
+%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+In this manuscript we present the mineralogic mapping of the Av-9 Numisia quadrangle of Vesta using the most up-to-date data from the NASA–Dawn mission.
+This quadrangle is located in Vesta’s equatorial zone (22° south to 22° north, 218° to 288° east, in Claudia coordinate system) and takes its name from the impact crater Numisia. The main feature, which dominates the quadrangle, is the Vestalia Terra plateau, a topographic high about 10 km above the sur- rounding areas. To the south, this region fades into the Rheasilvia basin, while to the north it is bounded by the steep scarp of Postumia basin.
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Keywords}: biodiversity, mineral, quartz...
+% in ordine alfabetico 
+% \textbf grassetto tra {}
+
+%%%%%%%%%%%%%%%%%%%%
+\section{Introduzione}\label{sec:intro}
 % (mettere lo scopo "The aim of this paper")
 
 \textcolor{red}{Within the quadrangle scheme chosen to represent high} resolution data acquired by Dawn at Vesta, the Av-9 Numisia
@@ -88,6 +114,7 @@ The main craters in the quadrangle are Cornelia, Numisia, Dru- silla, Teia and F
 % \tiny{testo} cambia carattere 
 In this paper we present the mineralogic mapping of the surface composition of the Numisia quadrangle of Vesta using hyperspec- tral data from VIR, in order to develop a more complete view on the geologic evolution of this quadrangle of Vesta.
 
+\newpage per cambiare pagina 
 %%%%%%%%%%%%%%%%%%%%%
 
 \section{Area di studio} 
@@ -112,6 +139,21 @@ The Visible and Infrared Mapping Spectrometer (VIR) mapped the mineralogic (Figu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Metodi}  
 Dalle formule al codice!
+
+% Elenco puntato
+Questi sono i metodi utilizzati:
+\begin{itemize}
+    \item Le formule 
+    \item Il codice 
+    %[] per simboli al posto del pallino 
+\end{itemize}
+
+\begin{enumerate}
+    \item Le formule 
+    \item Il codice
+    % numerazione 
+\end{enumerate}
+    
 
 \subsection{Formule}
 Formula utilizzata
@@ -151,10 +193,9 @@ Risultato in percentuale 15\%
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussione}
 
-% Conclusione
-% Bibliografia 
+Come detto nella prima sezione \ref{sec:intro}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 % funzione che fa finire il documento 
