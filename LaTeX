@@ -32,6 +32,9 @@
 \linenumbers
 % numeri alle righe 
 
+\usepackage{listings}
+% per caricare codice 
+
 %%%%%%%%%%%%%%%%%%%
 
 \newcommand{\tr}{\textcolor{red}}
@@ -114,27 +117,38 @@ Dalle formule al codice!
 Formula utilizzata
 
 \begin{equation}
-   F = \sqrt[3]{G \times \frac{m_{1} \times m_{2}}{d^2}}
+   F = \sqrt[3]{G \times \frac{m_{1} \times m_{2}}{d^2}\times \mu}
    % \frac frazione 
    % _ per pedice tra {}
    % ^ apice tra {}
    % \times per moltiplicazione 
    % \sqrt per radice quadrata tra {}
    % \sqrt[3] per radice cubica 
+   % \mu per lettera greca 
 \end{equation}
 
 \begin{equation}
-   F = \frac{\sqrt[3]{G \times \frac{m_{1} \times m_{2}}{d^2}}}{p(x) \times \log{p(x)}
+   F = \frac{\sqrt[3]{G \times \frac{m_{1} \times m_{2}}{d^2}}}{-\sum{p(x) \times \log{p(x)}}}
    % \frac frazione 
    % \log per logaritmo 
-  
+   % \sum per sommatoria 
+ \label{eq:newton}  
 \end{equation}
+
+Formula nel testo non come funzione. $F=G \times m_{1}$. I risultati derivano dall'equazione precedentemente menzionata \ref{eq:newton}.
 
 \subsection{Codice}
 Codice utilizzato 
 
-\section{Risultati}
+\lstinputlisting[language=R]{cod.r.txt}
+% copia il testo di codice direttamente 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Risultati}
+Risultato in percentuale 15\% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussione}
 
 % Conclusione
