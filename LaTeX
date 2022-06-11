@@ -38,6 +38,9 @@
 \usepackage{setspace}
 % per interlinea doppia
 
+\usepackage{natbib}
+% per bibliografia 
+
 %%%%%%%%%%%%%%%%%%%
 
 \newcommand{\tr}{\textcolor{red}}
@@ -194,7 +197,25 @@ Risultato in percentuale 15\%
 \section{Discussione}
 
 Come detto nella prima sezione \ref{sec:intro}
+I risultati sono in linea con la ricerca di \cite{Adams_1974}, citato anche da \citep{Capria_2014}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{999}
+% andare su articolo, tool e poi export citation
+\bibitem[Adams(1974)]{Adams_1974}
+Adams, J. B. (1974), Visible and near-infrared diffuse reflectance spectra of pyroxenes as applied to remote sensing of solid objects in the solar system, J. Geophys. Res., 79( 32), 4829– 4836, doi:10.1029/JB079i032p04829
+% [] per vedere direttamente nel testo
+% citazione testo con parentesi
+% citazione testo con parentesi e virgola per data, solo alla fine del testo \citep
+% citazione senza parentesi \citet
+
+\bibitem[Capria (2014)]{Capria_2014}
+Capria, M.T. et al., 2014. Vesta surface thermal properties map. Geophys. Res. Lett. 41 (March), 1438–1443.
+% mettere in ordine alfabetico 
+% citazioni nel testo, anno più vecchio prima 
+
+% \url per mettere link
+\end{thebibliography}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
