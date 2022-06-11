@@ -7,9 +7,8 @@
 %per colori 
 
 \usetheme{Berkeley}
-%  themes: https://deic-web.uab.cat/~iblanes/beamer_gallery/index_by_theme.html
 \usecolortheme{spruce}
-%  colors: https://deic-web.uab.cat/~iblanes/beamer_gallery/index_by_color.html
+
 
 \title{La mia prima presentazione con beamer}
 \author{Alice Giacomelli}
