@@ -1,0 +1,80 @@
+\documentclass{beamer}
+% per presentazioni 
+
+\usepackage{listings}
+
+\usepackage{color}
+%per colori 
+
+\usetheme{Berlin}
+\usecolortheme{spruce}
+
+\title{La mia prima presentazione con beamer}
+\author{Alice Giacomelli}
+
+\begin{document}
+
+\maketitle
+
+% pagina indice 
+\AtBeginSection[] % non selezionare niente
+{	
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents[currentsection,currentsubsection,currentsubsubsection]
+\end{frame}
+}
+
+% lavorare per sezioni 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduzione}
+\begin{frame}
+\frametitle{Mia prima slide}
+\begin{itemize} % elenco puntato
+    \item Più distanti siamo, minore accuratezza \textbf{Impulso laser}, cambia in base al materiale, influenzato dalle condizioni ambientali % grassetto
+    \item \pause Sensore che può essere monetato su diversi supporti. Scansione dall’alto al basso. Sensore fisso o in movimento. % pause, appare nella slide successiva 
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Metodi}
+
+\begin{frame}
+\frametitle{Strumenti utilizzati}
+\centering % per centrare 
+\includegraphics[width=300]{albericov.jpg}
+% width per grandezza 
+\end{frame}
+
+\begin{frame}
+\frametitle{Formula}
+
+\centering
+\includegraphics[width=100]{Leonhard_Euler_2.jpg} \\
+
+\begin{equation} 
+    e^{i \pi} +1 = 0
+\end{equation}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Risultati}
+
+\begin{frame}
+\frametitle{Strumenti utilizzati}
+\centering % per centrare 
+\includegraphics[width=100]{albericov.jpg}
+\includegraphics[width=100]{alvericov1.jpg} \\ % vado a capo 
+\bigskip % per spazio più grande 
+\includegraphics[width=100]{albericov.jpg}
+\includegraphics[width=100]{alvericov1.jpg}
+
+\end{frame}
+
+%%%%%%%%%
+
+\end{document}
