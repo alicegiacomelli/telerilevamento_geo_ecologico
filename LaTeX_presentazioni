@@ -6,8 +6,10 @@
 \usepackage{color}
 %per colori 
 
-\usetheme{Berlin}
+\usetheme{Berkeley}
+%  themes: https://deic-web.uab.cat/~iblanes/beamer_gallery/index_by_theme.html
 \usecolortheme{spruce}
+%  colors: https://deic-web.uab.cat/~iblanes/beamer_gallery/index_by_color.html
 
 \title{La mia prima presentazione con beamer}
 \author{Alice Giacomelli}
@@ -42,12 +44,16 @@
 
 \section{Metodi}
 
+\subsection{Strumenti}
+
 \begin{frame}
 \frametitle{Strumenti utilizzati}
 \centering % per centrare 
 \includegraphics[width=300]{albericov.jpg}
 % width per grandezza 
 \end{frame}
+
+\subsection{Analisi}
 
 \begin{frame}
 \frametitle{Formula}
