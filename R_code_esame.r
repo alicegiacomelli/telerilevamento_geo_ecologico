@@ -43,7 +43,7 @@ landsat96
 # plotto bande separate 
 plot(landsat96)
 # plotto immagine RGB per vedere più bande nella stessa immagine con ggplot
-l96 <- ggRGB(landsat96, 4, 2, 1, stretch="hist")
+l96 <- ggRGB(landsat96, 1, 2, 3, stretch="hist")
 
 # 2001
 
@@ -60,8 +60,8 @@ landsat01
 
 plot(landsat01)
 
-plotRGB(landsat01, r=4, g=3, b=2, stretch="lin") 
-# l01 <- ggRGB(landsat01, 4, 2, 1, stretch="hist")
+l01 <- ggRGB(landsat01, 1, 2, 3, stretch="hist")
+l01
 
 # 2006
 
@@ -77,9 +77,9 @@ landsat06 <- stack(import06)
 landsat06
 
 plot(landsat06)
-
-plotRGB(landsat06, r=4, g=2, b=1, stretch="lin") 
-# l06 <- ggRGB(landsat06, 4, 2, 1, stretch="hist")
+ 
+l06 <- ggRGB(landsat06, 1, 2, 3, stretch="hist")
+l06
 
 # 2011
 
@@ -96,8 +96,8 @@ landsat11
 
 plot(landsat11)
 
-plotRGB(landsat11, r=4, g=2, b=1, stretch="lin") 
-# l11 <- ggRGB(landsat96, 4, 2, 1, stretch="hist")
+l11 <- ggRGB(landsat96, 1, 2, 3, stretch="hist")
+l11
 
 # tutte le immagini sono a 16 bit 
 # hanno un numero di celle elevato, circa 60 milioni 
