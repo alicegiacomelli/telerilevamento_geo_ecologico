@@ -60,7 +60,7 @@ landsat01
 
 plot(landsat01)
 
-plotRGB(landsat01, r=4, g=1, b=2, stretch="lin") 
+plotRGB(landsat01, r=4, g=3, b=2, stretch="lin") 
 # l01 <- ggRGB(landsat01, 4, 2, 1, stretch="hist")
 
 # 2006
@@ -78,7 +78,7 @@ landsat06
 
 plot(landsat06)
 
-plotRGB(landsat06, r=4, g=1, b=2, stretch="lin") 
+plotRGB(landsat06, r=4, g=2, b=1, stretch="lin") 
 # l06 <- ggRGB(landsat06, 4, 2, 1, stretch="hist")
 
 # 2011
@@ -96,7 +96,7 @@ landsat11
 
 plot(landsat11)
 
-plotRGB(landsat11, r=4, g=1, b=2, stretch="lin") 
+plotRGB(landsat11, r=4, g=2, b=1, stretch="lin") 
 # l11 <- ggRGB(landsat96, 4, 2, 1, stretch="hist")
 
 # tutte le immagini sono a 16 bit 
@@ -122,31 +122,58 @@ l11r
 
 # confronto immagine ricampionata e originale per controllo
 
-g1_96 <- ggRGB(landsat96, 4, 3, 2)   # immagine originale 
-g2_96 <- ggRGB(l96r, 4, 2, 1)        # immagine ricampionata 
+g1_96 <- ggRGB(landsat96, 4, 2, 1)   # immagine originale 
+g2_96 <- ggRGB(l96r, 4, 2, 1, stretch= "hist")        # immagine ricampionata 
 g1_96 / g2_96                        # confronto
 
-g1_01 <- ggRGB(landsat01, 4, 3, 2)   # immagine originale 
-g2_01 <- ggRGB(l01r, 4, 2, 1)        # immagine ricampionata 
+g1_01 <- ggRGB(landsat01, 4, 2, 1, stretch = "hist")   # immagine originale 
+g2_01 <- ggRGB(l01r, 4, 2, 1, stretch = "hist)        # immagine ricampionata 
 g1_01/ g2_01                         # confronto 
 
-g1_06 <- ggRGB(landsat06, 4, 3, 2)   # immagine originale 
-g2_06 <- ggRGB(l06r, 4, 2, 1)        # immagine ricampionata 
+g1_06 <- ggRGB(landsat06, 4, 2, 1)   # immagine originale 
+g2_06 <- ggRGB(l06r, 4, 2, 1, stretch = "hist")        # immagine ricampionata 
 g1_06 / g2_06                        # confronto 
 
-g1_11 <- ggRGB(landsat11, 4, 3, 2)   # immagine originale 
-g2_11 <- ggRGB(l11r, 4, 2, 1)        # immagine ricampionata 
+g1_11 <- ggRGB(landsat11, 4, 2, 1)   # immagine originale 
+g2_11 <- ggRGB(l11r, 4, 2, 1, stretch = "hist")        # immagine ricampionata *********
 g1_11 / g2_11                        # confronto 
 
 # CONFRONTO IMMAGINI RICAMPIONATE dei diversi anni 
 g2_96 + g2_01 + g2_06 + g2_11
 
 
-############### INDICI SPETTRALI ###############
 
+######################### INDICI SPETTRALI ########################################
 
+# foglie assorbono il rosso e riflettono il NIR (lunghezze d'onda)
+# utilizzare le bande per visualizzare le immagini satellitari 
+# DVI - Difference Vegetation Index 
+# differenza NIR e red 
 
+# palette per DVI 
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) 
 
+# 1996
+dvi96 <- l96r[[4]] - l96r[[3]]
+plot(dvi96, col=cl)
+
+# 2001
+dvi01 <- l01r[[4]] - l01r[[3]]
+plot(dvi01, col=cl)
+
+# 2006
+dvi06 <- l06r[[4]] - l06r[[3]]
+plot(dvi06, col=cl)
+
+# 2011
+dvi11 <- l11r[[4]] - l11r[[3]]
+plot(dvi11, col=cl)
+
+par(mfrow=c(2,2))
+plot(dvi96, col=cl)
+plot(dvi01, col=cl)
+plot(dvi06, col=cl)
+plot(dvi11, col=cl)
 
 
 
