@@ -12,7 +12,7 @@ library(RStoolbox)    # visualizzazione e analisi dati satellitari (calcolo vari
 library(patchwork)    # unire più plot di ggplot
 
 # set working directory 
-setwd("/Users/alicegiacomelli/Desktop/lab/esame")
+setwd("/Users/alicegiacomelli/Desktop/lab/exam")
 
 
 
@@ -29,29 +29,29 @@ setwd("/Users/alicegiacomelli/Desktop/lab/esame")
 # banda 6 = infrarosso termico 
 # banda 7 = infrarosso medio SWIR 2
 
-# 1996
+# 1997
 
 # importare bande scaricate separatamente in una unica immagine
 
-# creo una lista con pattern in comune =  19961218
-list96 <- list.files(pattern="19961218")
+# creo una lista con pattern in comune =  1997
+list97 <- list.files(pattern="1997")
 # importo con la funzione raster lapply
-import96 <- lapply(list96, raster)
+import97 <- lapply(list97, raster)
 # unisco componenti della list96 in un unico blocco con la funzione raster stack
-landsat96 <- stack(import96) 
-landsat96
+landsat97 <- stack(import97) 
+landsat97
 # plotto bande separate 
-plot(landsat96)
+plot(landsat97)
 # plotto immagine RGB per vedere più bande nella stessa immagine con ggplot
-l96 <- ggRGB(landsat96, 1, 2, 3, stretch="hist")
+l97 <- ggRGB(landsat97, 4, 3, 2, stretch="hist")
 
 # 2001
 
 # importare bande scaricate separatamente in una unica immagine
 # stesse operazioni importazione precedente
 
-# pattern in comune =  20011029
-list01 <- list.files(pattern="20011029")
+# pattern in comune =  2001
+list01 <- list.files(pattern="2001")
 
 import01 <- lapply(list01, raster)
 
@@ -60,45 +60,46 @@ landsat01
 
 plot(landsat01)
 
-l01 <- ggRGB(landsat01, 1, 2, 3, stretch="hist")
+l01 <- ggRGB(landsat01, 4, 3, 2, stretch="hist")
 l01
 
-# 2006
+# 2004
 
 # importare bande scaricate separatamente in una unica immagine
 # stesse operazioni importazioni precedenti 
 
-# pattern in comune = 20060824
-list06 <- list.files(pattern="20060824")
+# pattern in comune = 2004
+list04 <- list.files(pattern="2004")
 
-import06 <- lapply(list06, raster)
+import04 <- lapply(list04, raster)
 
-landsat06 <- stack(import06) 
-landsat06
+landsat04 <- stack(import04) 
+landsat04
 
-plot(landsat06)
+plot(landsat04)
  
-l06 <- ggRGB(landsat06, 1, 2, 3, stretch="hist")
-l06
+l04 <- ggRGB(landsat04, 4, 3, 2, stretch="hist")
+l04
 
-# 2011
+# 2008
 
 # importare bande scaricate separatamente in una unica immagine
 # stesse operazioni delle importazioni precedenti 
 
-# pattern in comune = 20110907
-list11 <- list.files(pattern="20110907")
+# pattern in comune = 2008
+list08 <- list.files(pattern="2008")
 
-import11 <- lapply(list11, raster)
+import08 <- lapply(list08, raster)
 
-landsat11 <- stack(import11) 
-landsat11
+landsat08 <- stack(import08) 
+landsat08
 
-plot(landsat11)
+plot(landsat08)
 
-l11 <- ggRGB(landsat96, 1, 2, 3, stretch="hist")
-l11
+l08 <- ggRGB(landsat08, 4, 3, 2, stretch="hist")
+l08
 
+l97 + l01 + l04 + l08
 # tutte le immagini sono a 16 bit 
 # hanno un numero di celle elevato, circa 60 milioni 
 
