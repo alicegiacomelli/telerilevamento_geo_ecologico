@@ -61,7 +61,7 @@ landsat01
 plot(landsat01)
 
 plotRGB(landsat01, r=4, g=1, b=2, stretch="lin") 
-l01 <- ggRGB(landsat01, 4, 2, 1, stretch="hist")
+# l01 <- ggRGB(landsat01, 4, 2, 1, stretch="hist")
 
 # 2006
 
@@ -79,7 +79,7 @@ landsat06
 plot(landsat06)
 
 plotRGB(landsat06, r=4, g=1, b=2, stretch="lin") 
-l06 <- ggRGB(landsat06, 4, 2, 1, stretch="hist")
+# l06 <- ggRGB(landsat06, 4, 2, 1, stretch="hist")
 
 # 2011
 
@@ -97,7 +97,7 @@ landsat11
 plot(landsat11)
 
 plotRGB(landsat11, r=4, g=1, b=2, stretch="lin") 
-l11 <- ggRGB(landsat96, 4, 2, 1, stretch="hist")
+# l11 <- ggRGB(landsat96, 4, 2, 1, stretch="hist")
 
 # tutte le immagini sono a 16 bit 
 # hanno un numero di celle elevato, circa 60 milioni 
@@ -120,24 +120,34 @@ l11r
 
 # risoluzione di tutte le immagini ricampionate = 300m 
 
-# confronto immagine ricampionata e originale 
+# confronto immagine ricampionata e originale per controllo
+
 g1_96 <- ggRGB(landsat96, 4, 3, 2)   # immagine originale 
-g2_96 <- ggRGB(l96r, 4, 3, 2)        # immagine ricampionata 
+g2_96 <- ggRGB(l96r, 4, 2, 1)        # immagine ricampionata 
 g1_96 / g2_96                        # confronto
 
 g1_01 <- ggRGB(landsat01, 4, 3, 2)   # immagine originale 
-g2_01 <- ggRGB(l01r, 4, 3, 2)        # immagine ricampionata 
+g2_01 <- ggRGB(l01r, 4, 2, 1)        # immagine ricampionata 
 g1_01/ g2_01                         # confronto 
 
-g5 <- ggRGB(landsat06, 4, 3, 2)   # immagine originale 
-g6 <- ggRGB(l06r, 4, 3, 2)        # immagine ricampionata 
-g1_06 / g2_06                     # confronto 
+g1_06 <- ggRGB(landsat06, 4, 3, 2)   # immagine originale 
+g2_06 <- ggRGB(l06r, 4, 2, 1)        # immagine ricampionata 
+g1_06 / g2_06                        # confronto 
 
 g1_11 <- ggRGB(landsat11, 4, 3, 2)   # immagine originale 
-g2_11 <- ggRGB(l11r, 4, 3, 2)        # immagine ricampionata 
+g2_11 <- ggRGB(l11r, 4, 2, 1)        # immagine ricampionata 
 g1_11 / g2_11                        # confronto 
 
-# confronto immagini ricampionate dei diversi anni 
+# CONFRONTO IMMAGINI RICAMPIONATE dei diversi anni 
+g2_96 + g2_01 + g2_06 + g2_11
+
+
+############### INDICI SPETTRALI ###############
+
+
+
+
+
 
 
 
