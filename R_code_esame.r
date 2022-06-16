@@ -122,21 +122,26 @@ l11r
 
 # confronto immagine ricampionata e originale per controllo
 
-g1_96 <- ggRGB(landsat96, 4, 2, 1)   # immagine originale 
-g2_96 <- ggRGB(l96r, 4, 2, 1, stretch= "hist")        # immagine ricampionata 
-g1_96 / g2_96                        # confronto
+g1_96 <- ggRGB(landsat96, 4, 2, 1)                     # immagine originale 
+g2_96 <- ggRGB(l96r, 4, 2, 1, stretch= "hist")         # immagine ricampionata 
+g1_96 / g2_96                                          # confronto
 
 g1_01 <- ggRGB(landsat01, 4, 2, 1, stretch = "hist")   # immagine originale 
-g2_01 <- ggRGB(l01r, 4, 2, 1, stretch = "hist)        # immagine ricampionata 
-g1_01/ g2_01                         # confronto 
+g2_01 <- ggRGB(l01r, 4, 2, 1, stretch = "hist)         # immagine ricampionata 
+g1_01/ g2_01                                           # confronto 
 
-g1_06 <- ggRGB(landsat06, 4, 2, 1)   # immagine originale 
+g1_06 <- ggRGB(landsat06, 4, 2, 1)                     # immagine originale 
 g2_06 <- ggRGB(l06r, 4, 2, 1, stretch = "hist")        # immagine ricampionata 
-g1_06 / g2_06                        # confronto 
-
-g1_11 <- ggRGB(landsat11, 4, 2, 1)   # immagine originale 
+g1_06 / g2_06                                          # confronto 
+   
+g1_11 <- ggRGB(landsat11, 4, 2, 1)                     # immagine originale 
 g2_11 <- ggRGB(l11r, 4, 2, 1, stretch = "hist")        # immagine ricampionata *********
-g1_11 / g2_11                        # confronto 
+g1_11 / g2_11                                          # confronto 
+
+# r = NIR
+# g = red
+# b = green 
+
 
 # CONFRONTO IMMAGINI RICAMPIONATE dei diversi anni 
 g2_96 + g2_01 + g2_06 + g2_11
