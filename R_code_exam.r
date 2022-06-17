@@ -45,12 +45,7 @@ l97 / l01
 
 cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) 
 
-dvi97 <- l97[[4]] - l97[[3]]
-plot(dvi97)
 
-# 2001
-dvi01 <- l01[[4]] - l01[[3]]
-plot(dvi01, col=cl)
 
 
 
