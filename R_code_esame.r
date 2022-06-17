@@ -107,47 +107,48 @@ l97 + l01 + l04 + l08
 # attraverso la funzione aggregate 
 # con fact=10 cioè compatta 10 pixel 
 
-l96r <- aggregate(landsat96, fact=10)
-l96r
+l97r <- aggregate(landsat97, fact=10)
+l97r
 
 l01r <- aggregate(landsat01, fact=10)
 l01r
 
-l06r <- aggregate(landsat06, fact=10)
-l06r
+l04r <- aggregate(landsat04, fact=10)
+l04r
 
-l11r <- aggregate(landsat11, fact=10)
-l11r
+l08r <- aggregate(landsat08, fact=10)
+l08r
 
 # risoluzione di tutte le immagini ricampionate = 300m 
 
 # confronto immagine ricampionata e originale per controllo
 
-g1_96 <- ggRGB(landsat96, 4, 2, 1)                     # immagine originale 
-g2_96 <- ggRGB(l96r, 4, 2, 1, stretch= "hist")         # immagine ricampionata 
-g1_96 / g2_96                                          # confronto
+g1_97 <- ggRGB(landsat97, 4, 3, 2, stretch = "hist")   # immagine originale 
+g2_97 <- ggRGB(l97r, 4, 3, 2, stretch = "hist")        # immagine ricampionata 
+g1_97 / g2_97                                          # confronto
 
-g1_01 <- ggRGB(landsat01, 4, 2, 1, stretch = "hist")   # immagine originale 
-g2_01 <- ggRGB(l01r, 4, 2, 1, stretch = "hist)         # immagine ricampionata 
-g1_01/ g2_01                                           # confronto 
+g1_01 <- ggRGB(landsat01, 4, 3, 2, stretch = "hist")   # immagine originale 
+g2_01 <- ggRGB(l01r, 4, 3, 2, stretch = "hist")        # immagine ricampionata 
+g1_01 / g2_01                                          # confronto 
 
-g1_06 <- ggRGB(landsat06, 4, 2, 1)                     # immagine originale 
-g2_06 <- ggRGB(l06r, 4, 2, 1, stretch = "hist")        # immagine ricampionata 
-g1_06 / g2_06                                          # confronto 
+g1_04 <- ggRGB(landsat04, 4, 3, 2, stretch = "hist")   # immagine originale 
+g2_04 <- ggRGB(l04r, 4, 3, 2, stretch = "hist")        # immagine ricampionata 
+g1_04 / g2_04                                          # confronto 
    
-g1_11 <- ggRGB(landsat11, 4, 2, 1)                     # immagine originale 
-g2_11 <- ggRGB(l11r, 4, 2, 1, stretch = "hist")        # immagine ricampionata *********
-g1_11 / g2_11                                          # confronto 
+g1_08 <- ggRGB(landsat08, 4, 3, 2, stretch = "hist")   # immagine originale 
+g2_08 <- ggRGB(l08r, 4, 3, 2, stretch = "hist")        # immagine ricampionata 
+g1_08 / g2_08                                          # confronto 
 
 # r = NIR
 # g = red
 # b = green 
 
+# le immagini sono state ricampionate correttamente perchè sono simili 
 
 # CONFRONTO IMMAGINI RICAMPIONATE dei diversi anni 
-g2_96 + g2_01 + g2_06 + g2_11
+g2_97 + g2_01 + g2_04 + g2_08
 
-
+# da una prima analisi si può già vedere come la distribuzione dei colori azzurro e rosso cambi da un'immagine all'altra 
 
 ######################### INDICI SPETTRALI ########################################
 
@@ -159,27 +160,29 @@ g2_96 + g2_01 + g2_06 + g2_11
 # palette per DVI 
 cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) 
 
-# 1996
-dvi96 <- l96r[[4]] - l96r[[3]]
-plot(dvi96, col=cl)
+# 1997
+dvi97 <- l97r[[4]] - l97r[[3]]
+plot(dvi97)
 
 # 2001
 dvi01 <- l01r[[4]] - l01r[[3]]
 plot(dvi01, col=cl)
 
-# 2006
-dvi06 <- l06r[[4]] - l06r[[3]]
-plot(dvi06, col=cl)
+# 2004
+dvi04 <- l04r[[4]] - l04r[[3]]
+plot(dvi04, col=cl)
 
-# 2011
-dvi11 <- l11r[[4]] - l11r[[3]]
-plot(dvi11, col=cl)
+# 2008
+dvi08 <- l08r[[4]] - l08r[[3]]
+plot(dvi08, col=cl)
 
 par(mfrow=c(2,2))
-plot(dvi96, col=cl)
+plot(dvi97, col=cl)
 plot(dvi01, col=cl)
-plot(dvi06, col=cl)
-plot(dvi11, col=cl)
+plot(dvi04, col=cl)
+plot(dvi08, col=cl)
+
+
 
 
 
