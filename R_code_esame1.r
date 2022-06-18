@@ -65,6 +65,26 @@ plotRGB(v18)
 plotRGB(v19)
 plotRGB(v22)
 
+# salvo immagini 
+pdf("Immagini_colori_naturali_anno_2018.pdf")
+plotRGB(v18) +
+title = "immagine a colori naturale - anno 2018"
+dev.off()
+
+pdf("Immagini_colori_naturali_anno_2019.pdf")
+plotRGB(v19) +
+title = "immagine a colori naturale - anno 2019"
+dev.off()
+
+pdf("Immagini_colori_naturali_anno_2022.pdf")
+plotRGB(v22) +
+title = "immagine a colori naturale - anno 2018"
+dev.off()
+# pdf("Immagini con NIR al posto del rosso - anno 2018")
+# ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
+    #  ggtitle("2018")
+#dev.off()
+
 # salvataggio immagine multiframe 
 
 # importo immagine con bande 
@@ -107,6 +127,23 @@ g4 <- ggRGB(v19_bande, 8, 4, 3, stretch="lin") +
 
 g4 <- ggRGB(v22_bande, 8, 4, 3, stretch="lin") +
       ggtitle("2022")
+
+
+# salvo immagini 
+pdf("NIR_rosso_anno_2018.pdf")
+ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
+      ggtitle("Immagini con NIR al posto del rosso - anno 2018")
+dev.off()
+
+pdf("NIR_rosso_anno_2019.pdf")
+ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
+      ggtitle("Immagini con NIR al posto del rosso - anno 2019")
+dev.off()
+
+pdf("NIR_rosso_anno_2022.pdf")
+ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
+      ggtitle("Immagini con NIR al posto del rosso - anno 2022")
+dev.off()
 
 # DVI 
 
@@ -161,63 +198,206 @@ dev.off
 # differenze NDVI 
 
 # 2018 / 2019
-diff1 = ndvi18 - ndvi19
-diff1_plot <- ggplot()
+diff_ndvi_1 = ndvi18 - ndvi19
+plot(diff1)
+
+# 2019 / 2022
+diff_ndvi_2 = ndvi19 - ndvi22
+
+# landcover 
+landcover18 <- unsuperClass(v18_bande, nClasses=3)
+landcover19 <- unsuperClass(v19_bande, nClasses=3)
+landcover22 <- unsuperClass(v22_bande, nClasses=3)
+
+landcover18
+landcover19
+landcover22
+
+# mappa classificazione 
+plot(landcover18$map)
+plot(landcover19$map)
+plot(landcover22$map)
+
+# frequenza 
+freq(landcover18$map)
+# classe 1 = 
+# classe 2 =
+# classe 3 =
+
+# numero totale di pixel 
+landsat18
+tot18 <- ****
+
+# proporzione foresta 2018
+prop_foresta_18 <- *** / tot18
+prop_foresta_18
+# numero proporzione ****** 
+
+# percentuale foresta 2018
+perc_foresta_18 <- n * 100/ tot18
+perc_foresta_18
+#
+
+# percentuale agricoltura l92c
+perc_terreno_18 <-  n * 100 / tot18
+perc_terreno_18
+
+# percentuale altro 
+perc_altro_18 <-  n * 100 / tot18
+perc_altro_18
+
+###############
+
+# frequenza 
+freq(landcover19$map)
+# classe 1 = 
+# classe 2 =
+# classe 3 =
+
+# numero totale di pixel 
+landsat19
+tot19 <- ****
+
+# proporzione foresta 2018
+prop_foresta_19 <- *** / tot19
+prop_foresta_19
+# numero proporzione ****** 
+
+# percentuale foresta 2018
+perc_foresta_19 <- n * 100/ tot19
+perc_foresta_19
+#
+
+# percentuale agricoltura l92c
+perc_terreno_19 <-  n * 100 / tot19
+perc_terreno_19
+
+# percentuale altro 
+perc_altro_19 <-  n * 100 / tot19
+perc_altro_19
+
+
+#############
+
+# frequenza 
+freq(landcover22$map)
+# classe 1 = 
+# classe 2 =
+# classe 3 =
+
+# numero totale di pixel 
+landsat22
+tot22 <- ****
+
+# proporzione foresta 2018
+prop_foresta_22 <- *** / tot22
+prop_foresta_22
+# numero proporzione ****** 
+
+# percentuale foresta 2018
+perc_foresta_22 <- n * 100/ tot22
+perc_foresta_22
+#
+
+# percentuale agricoltura l92c
+perc_terreno_18 <-  n * 100 / tot18
+perc_terreno_18
+
+# percentuale altro 
+perc_altro_18 <-  n * 100 / tot18
+perc_altro_18
 
 
 
+# colonne (fields)
+# quando si fa un elenco, elementi dello stesso gruppo, c perchè un vettore
+# " perchè sono testi 
+class <- c("Foresta", "Terreno", "Altro")
+percent_2018 <- c(89.43075, 10.56925) ******+
+percent_2019 <- c(51.91932, 48.08068) ********+
+percent_2019 <- c(51.91932, 48.08068) ************+
+
+# dataframe
+multitemporal <- data.frame(class, percent_2018, percent_2019, percent_2022)
+multitemporal
+
+# 2018
+# aes: aestetic
+# + unire due funzioni 
+barplot18 <- ggplot(multitemporal, aes(x=class, y=percent_2018, color=class)) +
+             geom_bar(stat="identity", fill="white") +
+             ggtitle("2018")
+
+# 2019
+barplot19 <- ggplot(multitemporal, aes(x=class, y=percent_2019, color=class)) +
+             geom_bar(stat="identity", fill="white") +
+             ggtitle("2019")
+
+# 2022
+barplot22 <- ggplot(multitemporal, aes(x=class, y=percent_2022, color=class)) +
+             geom_bar(stat="identity", fill="white") +
+             ggtitle("2022")
 
 
+patchwork3 <- barplot18 + barplot19 + barplot22
+patchwork3 + annotazioni(
+  title = 'Percentuali landcover'
+  subtitle = 'Levico Terme nel 2018, 2019, 2022')
+
+pdf("barplot_percentuali_landcover.pdf")
+print(patchwork3 + plot_annotation(
+  title = 'Percentuali landcover'
+  subtitle = 'Levico Terme nel 2018, 2019, 2022'))
+dev.off()    
 
 
+### etertogeneità 
+# variabilità = deviazione standard
 
+# banda NIR
+nir1 <- v18_bande[[8]]
+nir2 <- v19_bande[[8]]
+nir3 <- v22_bande[[8]]
 
+# 3 nuovi file raster con variabilità
+# calcola la deviazione standard 
+sd1 <- focal(nir1, matrix(1/9, 3, 3), fun=sd)
+# nir : immagine
+# matrice formata da 3*3 pixel, matrice : 1/9
+# colonne : 3
+# righe : 3
+# funzione : deviazione standard sd    
 
+sd2 <- focal(nir2, matrix(1/9, 3, 3), fun=sd)
+sd3 <- focal(nir3, matrix(1/9, 3, 3), fun=sd)
 
+# plot viridis
 
+sd1_viridis <- ggplot() + 
+geom_raster(sd1, mapping=aes(x=x, y=y, fill=layer))+
+scale_fill_viridis(option = "inferno") +
+ggtitle("Deviazione standard con pacchetto viridis - anno 2018")
 
+sd2_viridis <- ggplot() + 
+geom_raster(sd3, mapping=aes(x=x, y=y, fill=layer))+
+scale_fill_viridis(option = "inferno") +
+ggtitle("Deviazione standard con pacchetto viridis - anno 2019")
 
+sd3_viridis <- ggplot() + 
+geom_raster(sd2, mapping=aes(x=x, y=y, fill=layer))+
+scale_fill_viridis(option = "inferno") +
+ggtitle("Deviazione standard con pacchetto viridis - anno 2022")
 
+patchwork4 <- sd1_viridis + sd2_viridis + sd3_viridis
+patchwork4 + plot_annotation(
+  title = 'Eterogeneità'
+  subtitle = 'Levico Terme nel 2018, 2019, 2022')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# salvo immagini 
-pdf("Immagini con NIR al posto del rosso - anno 2018")
-ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
-      ggtitle("2018")
+# salvataggio 
+pdf("eterogeneità.pdf")
+print(patchwork4 + plot_annotation(
+  title = 'Eterogeneità'
+  subtitle = 'Levico Terme nel 2018, 2019, 2022'))
 dev.off()
-
-pdf("Immagini con NIR al posto del rosso - anno 2019")
-ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
-      ggtitle("2018")
-dev.off()
-
-pdf("Immagini con NIR al posto del rosso - anno 2018")
-ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
-      ggtitle("2018")
-dev.off()
-
-
-
-
-
-
-
-
 
 
