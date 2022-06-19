@@ -231,7 +231,8 @@ dev.off()
 # 2018 / 2019
 ndvi_dif1 = ndvi18 - ndvi19
 ndvi_dif2 = ndvi19 -ndvi22
-cl <- colorRampPalette(c('darkblue','green','red','black'))(100)
+
+cl <- colorRampPalette(c('darkblue','green','red','white'))(100)
 
 plot(dvi_dif1, col=cl)
 plot(dvi_dif2, col=cl)
@@ -239,164 +240,126 @@ plot(dvi_dif2, col=cl)
 par(mfrow=c(1,2))
 plot(dvi_dif1, col=cl)
 plot(dvi_dif2, col=cl)
-***************************************
+# *************************************** colorazione 
 
 
 
 ###### landcover 
-landcover18 <- unsuperClass(v18_bande, nClasses=3)
-landcover19 <- unsuperClass(v19_bande, nClasses=3)
-landcover22 <- unsuperClass(v22_bande, nClasses=3)
+
+landcover18 <- unsuperClass(v18_bande, nClasses=4)
+landcover22 <- unsuperClass(v22_bande, nClasses=4)
 
 landcover18
-landcover19
 landcover22
 
 # mappa classificazione 
-plot1 <- plot(landcover18$map)
-plot2 <- plot(landcover19$map)
-plot3 <- plot(landcover22$map)
+plot(landcover18$map) # colori diversi    
+plot(landcover22$map) # colori diversi
 
-# frequenza 
+par(mfrow=c(1,3))
+plot(landcover18$map)
+plot(landcover22$map)
+
+# salvataggio 
+pdf("landcover_2018.pdf")
+plot(landcover18$map)
+dev.off()
+
+pdf("landcover_2022.pdf")
+plot(landcover22$map)
+dev.off()
+
+
+# frequenza
+
 freq(landcover18$map)
-# classe 1 = 
-# classe 2 =
-# classe 3 =
+#      value    count
+# [1,]     1    61505 (città)
+# [2,]     2    62300 (acqua)
+# [3,]     3   269484 (terreno)
+# [4,]     4   348465 (bosco)
 
-# numero totale di pixel 
-landsat18
-tot18 <- ****
-
-# proporzione foresta 2018
-prop_foresta_18 <- *** / tot18
-prop_foresta_18
-# numero proporzione ****** 
-
-# percentuale foresta 2018
-perc_foresta_18 <- n * 100/ tot18
-perc_foresta_18
-#
-
-# percentuale agricoltura l92c
-perc_terreno_18 <-  n * 100 / tot18
-perc_terreno_18
-
-# percentuale altro 
-perc_altro_18 <-  n * 100 / tot18
-perc_altro_18
-
-###############
-
-# frequenza 
-freq(landcover19$map)
-# classe 1 = 
-# classe 2 =
-# classe 3 =
-
-# numero totale di pixel 
-landsat19
-tot19 <- ****
-
-# proporzione foresta 2018
-prop_foresta_19 <- *** / tot19
-prop_foresta_19
-# numero proporzione ****** 
-
-# percentuale foresta 2018
-perc_foresta_19 <- n * 100/ tot19
-perc_foresta_19
-#
-
-# percentuale agricoltura l92c
-perc_terreno_19 <-  n * 100 / tot19
-perc_terreno_19
-
-# percentuale altro 
-perc_altro_19 <-  n * 100 / tot19
-perc_altro_19
-
-
-#############
-
-# frequenza 
 freq(landcover22$map)
-# classe 1 = 
-# classe 2 =
-# classe 3 =
+#      value  count
+# [1,]     1 296801 (terreno)
+# [2,]     2  82523 (città)
+# [3,]     3  57954 (acqua)
+# [4,]     4 304476 (bosco)
 
 # numero totale di pixel 
-landsat22
-tot22 <- ****
-
-# proporzione foresta 2018
-prop_foresta_22 <- *** / tot22
-prop_foresta_22
-# numero proporzione ****** 
-
-# percentuale foresta 2018
-perc_foresta_22 <- n * 100/ tot22
-perc_foresta_22
-#
-
-# percentuale agricoltura l92c
-perc_terreno_18 <-  n * 100 / tot18
-perc_terreno_18
-
-# percentuale altro 
-perc_altro_18 <-  n * 100 / tot18
-perc_altro_18
+v18_bande
+v22_bande
+# v18 : dimensions : 611, 1214, 741754, 4  (nrow, ncol, ncell, nlayers)
+# v22 : dimensions : 611, 1214, 741754, 4  (nrow, ncol, ncell, nlayers)
+tot <- 741754
 
 
+# percentuale bosco 2018
+perc_bosco_18 <- 348465 * 100 / tot
+perc_bosco_19 <- 304476 * 100 / tot
+perc_bosco_18 # 46.97851
+perc_bosco_19 # 41.04811
 
-# colonne (fields)
-# quando si fa un elenco, elementi dello stesso gruppo, c perchè un vettore
-# " perchè sono testi 
-class <- c("Foresta", "Terreno", "Altro")
-percent_2018 <- c(89.43075, 10.56925) ******+
-percent_2019 <- c(51.91932, 48.08068) ********+
-percent_2019 <- c(51.91932, 48.08068) ************+
+# percentuale terreno 
+perc_terreno_18 <- 269484 * 100 / tot
+perc_terreno_22 <- 296801 * 100 / tot
+perc_terreno_18 # 36.33064
+perc_terreno_22 # 40.0134
+
+# percentuale città 
+perc_citta_18 <- 61505 * 100 / tot
+perc_citta_22 <- 82523 * 100 / tot
+perc_citta_18 # 8.291833
+perc_citta_22 # 11.12539
+
+# percentuale acqua 
+perc_acqua_18 <- 62300 * 100 / tot
+perc_acqua_22 <- 57954 * 100 / tot
+perc_acqua_18 # 8.399011
+perc_acqua_22 # 7.813102
+
+
+class <- c("Bosco", "Terreno", "Città", "Acqua")
+percent_2018 <- c(46.97851, 36.33064, 8.291833, 8.399011)                
+percent_2022 <- c(41.04811, 40.0134, 11.12539, 7.813102)
+
 
 # dataframe
-multitemporal <- data.frame(class, percent_2018, percent_2019, percent_2022)
+multitemporal <- data.frame(class, percent_2018, percent_2022)
 multitemporal
 
-# 2018
-# aes: aestetic
-# + unire due funzioni 
+# 2018 
 barplot18 <- ggplot(multitemporal, aes(x=class, y=percent_2018, color=class)) +
              geom_bar(stat="identity", fill="white") +
              ggtitle("2018")
-
-# 2019
-barplot19 <- ggplot(multitemporal, aes(x=class, y=percent_2019, color=class)) +
-             geom_bar(stat="identity", fill="white") +
-             ggtitle("2019")
+barplot18
 
 # 2022
 barplot22 <- ggplot(multitemporal, aes(x=class, y=percent_2022, color=class)) +
              geom_bar(stat="identity", fill="white") +
              ggtitle("2022")
+barplot22
 
 
-patchwork3 <- barplot18 + barplot19 + barplot22
-patchwork3 + annotazioni(
-  title = 'Percentuali landcover'
-  subtitle = 'Levico Terme nel 2018, 2019, 2022')
+patchwork_barplot <- barplot18 + barplot22
+patchwork_barplot + plot_annotation(
+  title = 'Percentuali landcover',
+  subtitle = 'Confonto 2018-2022')
 
 pdf("barplot_percentuali_landcover.pdf")
-print(patchwork3 + plot_annotation(
-  title = 'Percentuali landcover'
-  subtitle = 'Levico Terme nel 2018, 2019, 2022'))
+print(patchwork_barplot + plot_annotation(
+  title = 'Percentuali landcover',
+  subtitle = 'Confronto 2018-2022'))
 dev.off()    
 
 
 ### etertogeneità 
 # variabilità = deviazione standard
 
-# banda NIR
-nir1 <- v18_bande[[8]]
-nir2 <- v19_bande[[8]]
-nir3 <- v22_bande[[8]]
+# richiamo banda NIR
+nir1 <- v18_bande[[4]]
+nir2 <- v19_bande[[4]]
+nir3 <- v22_bande[[4]]
 
 # 3 nuovi file raster con variabilità
 # calcola la deviazione standard 
@@ -429,7 +392,7 @@ ggtitle("Deviazione standard con pacchetto viridis - anno 2022")
 
 patchwork4 <- sd1_viridis + sd2_viridis + sd3_viridis
 patchwork4 + plot_annotation(
-  title = 'Eterogeneità'
+  title = 'Eterogeneità',
   subtitle = 'Levico Terme nel 2018, 2019, 2022')
 
 # salvataggio 
