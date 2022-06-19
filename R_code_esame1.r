@@ -319,6 +319,7 @@ perc_acqua_18 # 8.399011
 perc_acqua_22 # 7.813102
 
 
+# vettori
 class <- c("Bosco", "Terreno", "Città", "Acqua")
 percent_2018 <- c(46.97851, 36.33064, 8.291833, 8.399011)                
 percent_2022 <- c(41.04811, 40.0134, 11.12539, 7.813102)
@@ -346,10 +347,16 @@ patchwork_barplot + plot_annotation(
   title = 'Percentuali landcover',
   subtitle = 'Confonto 2018-2022')
 
-pdf("barplot_percentuali_landcover.pdf")
-print(patchwork_barplot + plot_annotation(
-  title = 'Percentuali landcover',
-  subtitle = 'Confronto 2018-2022'))
+pdf("barplot_percentuali_landcover_2018.pdf")
+print(barplot18 + plot_annotation(
+  title = 'Percentuali landcover 2018',
+  subtitle = 'Boschi sopra Levico Terme'))
+dev.off()    
+
+pdf("barplot_percentuali_landcover_2022.pdf")
+print(barplot18 + plot_annotation(
+  title = 'Percentuali landcover 2022',
+  subtitle = 'Boschi sopra Levico Terme'))
 dev.off()    
 
 
@@ -363,31 +370,42 @@ nir3 <- v22_bande[[4]]
 
 # 3 nuovi file raster con variabilità
 # calcola la deviazione standard 
-sd1 <- focal(nir1, matrix(1/9, 3, 3), fun=sd)
+sd1 <- focal(nir1, matrix(1/49, 7, 7), fun=sd)
 # nir : immagine
 # matrice formata da 3*3 pixel, matrice : 1/9
 # colonne : 3
 # righe : 3
 # funzione : deviazione standard sd    
 
-sd2 <- focal(nir2, matrix(1/9, 3, 3), fun=sd)
-sd3 <- focal(nir3, matrix(1/9, 3, 3), fun=sd)
+sd2 <- focal(nir2, matrix(1/49, 7, 7), fun=sd)
+sd3 <- focal(nir3, matrix(1/49, 7, 7), fun=sd)
 
-# plot viridis
+# plot 
+
+plot(sd1, col=cl)
+plot(sd2, col=cl)
+plot(sd3, col=cl)
+
+par(mfrow=(1,3))
+plot(sd1, col=cl)
+plot(sd2, col=cl)
+plot(sd3, col=cl)
+
+############################
 
 sd1_viridis <- ggplot() + 
 geom_raster(sd1, mapping=aes(x=x, y=y, fill=layer))+
-scale_fill_viridis(option = "inferno") +
+scale_fill_viridis(option = "plasma") +
 ggtitle("Deviazione standard con pacchetto viridis - anno 2018")
 
 sd2_viridis <- ggplot() + 
 geom_raster(sd3, mapping=aes(x=x, y=y, fill=layer))+
-scale_fill_viridis(option = "inferno") +
+scale_fill_viridis(option = "plasma") +
 ggtitle("Deviazione standard con pacchetto viridis - anno 2019")
 
 sd3_viridis <- ggplot() + 
 geom_raster(sd2, mapping=aes(x=x, y=y, fill=layer))+
-scale_fill_viridis(option = "inferno") +
+scale_fill_viridis(option = "plasma") +
 ggtitle("Deviazione standard con pacchetto viridis - anno 2022")
 
 patchwork4 <- sd1_viridis + sd2_viridis + sd3_viridis
