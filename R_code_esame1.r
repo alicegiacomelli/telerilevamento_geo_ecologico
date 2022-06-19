@@ -1,3 +1,4 @@
+# librerie 
 library(raster)       # gestione immagini raster
 library(ggplot2)      # visualizzazione dati in modo potente (grafici)
 library(viridis)      # scale di colore
@@ -9,14 +10,16 @@ setwd("/Users/alicegiacomelli/Desktop/lab/vaia")
 
 # importazione immagine colori
 
-vaia18 <- brick("T32TQS_20180926T101021_TCI_10m.jp2")
+vaia18 <- brick("T32TPS_20180827T101021_TCI_10m.jp2")
 vaia18
 
-vaia19 <- brick("T32TQS_20190723T101031_TCI_10m.jp2")
+vaia19 <- brick("T32TPS_20190628T101039_TCI_10m.jp2")
 vaia19
 
-vaia22 <- brick("T32TQS_20220612T100559_TCI_10m.jp2")
+vaia22 <- brick("T32TPS_20220612T100559_TCI_10m.jp2")
 vaia22
+
+# immagini 8 bit 
 
 # immagine composta da 3 bande 
 
@@ -33,78 +36,102 @@ vaia22
 ##   B11= SWIR                            1.610                           
 ##   B12= SWIR                            2.190                           
 
-g1 <- ggRGB(vaia18, 1, 2, 3, stretch = "lin") + 
+g18 <- ggRGB(vaia18, 1, 2, 3, stretch = "lin") + 
   ggtitle("2018")
 
-g2 <- ggRGB(vaia19, 1, 2, 3, stretch = "lin") + 
+g19 <- ggRGB(vaia19, 1, 2, 3, stretch = "lin") + 
   ggtitle("2019")
   
-g3 <- ggRGB(vaia22, 1, 2, 3, stretch = "lin") +
+g22 <- ggRGB(vaia22, 1, 2, 3, stretch = "lin") +
   ggtitle("2022")
   
-g1 + g2 + g3
+g18 + g19 + g22
   
 # ritaglio 
 plotRGB(vaia22, 1, 2, 3, stretch = "lin") 
 drawExtent(show=TRUE, col="red") 
 
 # class      : Extent 
-# xmin       : 702233.2 
-# xmax       : 755349.7 
-# ymin       : 5093798 
-# ymax       : 5132360
+# xmin       : 672207.6 
+# xmax       : 684354.3 
+# ymin       : 5097386 
+# ymax       : 5103496 
 
-e <- extent(c(702233.2, 755349.7, 5093798, 5132360))
+e <- extent(c(672207.6, 684354.3, 5097386, 5103496))
 
 v18 <- crop(vaia18, e)
 v19 <- crop(vaia19, e)
 v22 <- crop(vaia22, e)
 
-par(mfrow=c(1,3))
-plotRGB(v18)
-plotRGB(v19)
-plotRGB(v22)
+g18_crop <- ggRGB(v18, 1, 2, 3, stretch = "lin") + 
+  ggtitle("2018")
+
+g19_crop <- ggRGB(v19, 1, 2, 3, stretch = "lin") + 
+  ggtitle("2019")
+
+g22_crop <- ggRGB(v22, 1, 2, 3, stretch = "lin") + 
+  ggtitle("2022")
+
+patchwork1 <- g18_crop + g19_crop + g22_crop
+patchwork1 + plot_annotation(
+  title = 'Immagini colori naturali',
+  subtitle = 'Levico Terme nel 2018, 2019, 2022')
+
+
+# salvataggio 
+pdf("Immagini_colori_naturali_2018.pdf")
+print(g18_crop + plot_annotation(
+  title = 'Immagine colori naturali - anno 2018',
+  subtitle = 'Boschi sopra Levico Terme'))
+dev.off()
+
+pdf("Immagini_colori_naturali_2019.pdf")
+print(g19_crop + plot_annotation(
+  title = 'Immagine colori naturali - anno 2019',
+  subtitle = 'Boschi sopra Levico Terme'))
+dev.off()
+
+pdf("Immagini_colori_naturali_2022.pdf")
+print(g22_crop + plot_annotation(
+  title = 'Immagine colori naturali - anno 2022',
+  subtitle = 'Boschi sopra Levico Terme'))
+dev.off()
+
+
+
+# da una prima analisi si può vedere come la situazioni cambi tra l'anno 201
+
 
 # salvo immagini 
-pdf("Immagini_colori_naturali_anno_2018.pdf")
-plotRGB(v18) +
-title = "immagine a colori naturale - anno 2018"
-dev.off()
 
-pdf("Immagini_colori_naturali_anno_2019.pdf")
-plotRGB(v19) +
-title = "immagine a colori naturale - anno 2019"
-dev.off()
-
-pdf("Immagini_colori_naturali_anno_2022.pdf")
-plotRGB(v22) +
-title = "immagine a colori naturale - anno 2018"
-dev.off()
-# pdf("Immagini con NIR al posto del rosso - anno 2018")
-# ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
-    #  ggtitle("2018")
-#dev.off()
+# pdf("Immagini_colori_naturali_anno_2022.pdf")
+# plotRGB(v22) +
+# title = "Immagine a colori naturale - anno 2018"
+# dev.off()
 
 # salvataggio immagine multiframe 
 
 # importo immagine con bande 
 
-# creo una lista con pattern in comune =  
-list18 <- list.files(pattern="**********")
+# creo una lista con pattern in comune = 1021_B
+list18 <- list.files(pattern="1021_B")
 # importo con la funzione raster lapply
 import18 <- lapply(list18, raster)
 # unisco componenti della list96 in un unico blocco con la funzione raster stack
 vaia18_bande <- stack(import18) 
+vaia18_bande # per vedere nomi delle bande 
 
-# creo una lista con pattern in comune =  
-list19 <- list.files(pattern="**********")
+# creo una lista con pattern in comune = 1039_B
+list19 <- list.files(pattern="1039_B")
 import19 <- lapply(list19, raster)
 vaia19_bande <- stack(import19) 
+vaia19_bande 
 
-# creo una lista con pattern in comune =  
-list22 <- list.files(pattern="**********")
+# creo una lista con pattern in comune =  0559_B
+list22 <- list.files(pattern="0559_B")
 import22 <- lapply(list22, raster)
 vaia22_bande <- stack(import22) 
+vaia22_bande 
 
 # ritaglio 
 v18_bande <- crop(vaia18_bande, e)
@@ -115,96 +142,108 @@ v18_bande
 v19_bande 
 v22_bande 
 
-# vedo quante bande ci sono 
+# importazione bande singole 
+# banda 1 = B02 = blue
+# banda 2 = B03 = green
+# banda 3 = B04 = red
+# banda 4 = B08 = NIR
 
 # al posto del rosso nella banda RGB ci metto NIR 
 
-g4 <- ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
+g18_bande <- ggRGB(v18_bande, 4, 3, 2, stretch="lin") +
       ggtitle("2018")
-              
-g4 <- ggRGB(v19_bande, 8, 4, 3, stretch="lin") +
+g18_bande
+
+g19_bande <- ggRGB(v19_bande, 4, 3, 2, stretch="lin") +
       ggtitle("2019")
+g19_bande
 
-g4 <- ggRGB(v22_bande, 8, 4, 3, stretch="lin") +
+g22_bande <- ggRGB(v22_bande, 4, 3, 2, stretch="lin") +
       ggtitle("2022")
+g22_bande
 
+patchwork2 <- g18_bande + g19_bande + g22_bande
+patchwork2 + plot_annotation(
+  title = 'Immagini con NIR sulla prima banda',
+  subtitle = 'Boschi sopra Levico Terme nel 2018, 2019, 2022')
+
+# rosso è vegetazione !!!!!!!
 
 # salvo immagini 
+
 pdf("NIR_rosso_anno_2018.pdf")
-ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
-      ggtitle("Immagini con NIR al posto del rosso - anno 2018")
+ggRGB(v18_bande, 4, 3, 2, stretch="lin") +
+      ggtitle("2018")
 dev.off()
 
 pdf("NIR_rosso_anno_2019.pdf")
-ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
-      ggtitle("Immagini con NIR al posto del rosso - anno 2019")
+ggRGB(v19_bande, 4, 3, 2, stretch="lin") +
+      ggtitle("2019")
 dev.off()
 
 pdf("NIR_rosso_anno_2022.pdf")
-ggRGB(v18_bande, 8, 4, 3, stretch="lin") +
-      ggtitle("Immagini con NIR al posto del rosso - anno 2022")
+ggRGB(v22_bande, 4, 3, 2, stretch="lin") +
+      ggtitle("2022")
 dev.off()
 
 # DVI 
 
-#    BANDA   NOME LAYER JULY22   NOME LAYER JULY30
-#   NIR=B08     july22_B08          july30_B08
-#   RED=B04     july22_B04          july30_B04
-#   SWIR=B12    july22_B12          july30_B12         **********++++++++++
-
 # Differenza NIR e red 
 
-dvi18 = v18_bande[[8]] - v18_bande[[4]]
-dvi19 = v19_bande[[8]] - v19_bande[[4]]
-dvi22 = v22_bande[[8]] - v22_bande[[4]]
+dvi18 = v18_bande[[4]] - v18_bande[[3]]
+dvi19 = v19_bande[[4]] - v19_bande[[3]]
+dvi22 = v22_bande[[4]] - v22_bande[[3]]
 
 # NDVI 
 
-ndvi18 <- dvi18 / v18_bande[[8]] + v18_bande[[4]]
-ndvi19 <- dvi19 / v19_bande[[8]] + v19_bande[[4]]
-ndvi22 <- dvi22 / v22_bande[[8]] + v22_bande[[4]]
+ndvi18 <- dvi18 / v18_bande[[4]] + v18_bande[[3]]
+ndvi19 <- dvi19 / v19_bande[[4]] + v19_bande[[3]]
+ndvi22 <- dvi22 / v22_bande[[4]] + v22_bande[[3]]
 
-# ggplot
-ndviplot18 <- ggplot() +
-  geom_raster(ndvi18, mapping = aes(x=x, y=y, fill=layer), show.legend = FALSE) +
-  scale_fill_viridis(option = "magma", name = "NDVI") +
-  ggtitle("2018")
+# plot
+cl <- colorRampPalette(c('darkblue','green','red','black'))(100)
 
-ndviplot19 <- ggplot() +
-  geom_raster(ndvi19, mapping = aes(x=x, y=y, fill=layer), show.legend = FALSE) +
-  scale_fill_viridis(option = "magma", name = "NDVI") +
-  ggtitle("2019")
+ndvi18_plot <- plot(ndvi18, col=cl)
+ndvi19_plot <- plot(ndvi19, col=cl)
+ndvi22_plot <- plot(ndvi22, col=cl)
 
-ndviplot22 <- ggplot() +
-  geom_raster(ndvi22, mapping = aes(x=x, y=y, fill=layer), show.legend = FALSE) +
-  scale_fill_viridis(option = "magma", name = "NDVI") +
-  ggtitle("2022")
+ndvi1 <- par(mfrow=c(1,3))
+plot(ndvi18, col=cl)
+plot(ndvi19, col=cl)
+plot(ndvi22, col=cl)
 
+# salvataggio
+pdf("ndvi_2018.pdf")
+plot(ndvi18, col=cl)
+dev.off()
 
-patchwork1 <- ndviplot18 + ndviplot19 + ndviplot22
-patchwork1 + plot_annotation(
-  title = 'NDVI',
-  subtitle = 'Levico Terme negli anni 2018, 2019, 2022',
-  caption = 'Fonte: Sentinel 2')
+pdf("ndvi_2019.pdf")
+plot(ndvi19, col=cl)
+dev.off()
 
-# salvataggio 
-pdf("NDVI_santiago.pdf")
-print(patchwork1 + plot_annotation(
-  title = 'NDVI',
-  subtitle = 'Levico Terme negli anni 2018, 2019, 2022',
-  caption = 'Fonte: Sentinel 2'))
-dev.off
+pdf("ndvi_2022.pdf")
+plot(ndvi22, col=cl)
+dev.off()
+
 
 # differenze NDVI 
 
 # 2018 / 2019
-diff_ndvi_1 = ndvi18 - ndvi19
-plot(diff1)
+ndvi_dif1 = ndvi18 - ndvi19
+ndvi_dif2 = ndvi19 -ndvi22
+cl <- colorRampPalette(c('darkblue','green','red','black'))(100)
 
-# 2019 / 2022
-diff_ndvi_2 = ndvi19 - ndvi22
+plot(dvi_dif1, col=cl)
+plot(dvi_dif2, col=cl)
 
-# landcover 
+par(mfrow=c(1,2))
+plot(dvi_dif1, col=cl)
+plot(dvi_dif2, col=cl)
+***************************************
+
+
+
+###### landcover 
 landcover18 <- unsuperClass(v18_bande, nClasses=3)
 landcover19 <- unsuperClass(v19_bande, nClasses=3)
 landcover22 <- unsuperClass(v22_bande, nClasses=3)
@@ -214,9 +253,9 @@ landcover19
 landcover22
 
 # mappa classificazione 
-plot(landcover18$map)
-plot(landcover19$map)
-plot(landcover22$map)
+plot1 <- plot(landcover18$map)
+plot2 <- plot(landcover19$map)
+plot3 <- plot(landcover22$map)
 
 # frequenza 
 freq(landcover18$map)
