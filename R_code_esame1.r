@@ -232,14 +232,14 @@ dev.off()
 ndvi_dif1 = ndvi18 - ndvi19
 ndvi_dif2 = ndvi19 -ndvi22
 
-cl <- colorRampPalette(c('darkblue','green','red','white'))(100)
+cl <- colorRampPalette(c('darkblue','yellow','red','white'))(100)
 
-plot(dvi_dif1, col=cl)
-plot(dvi_dif2, col=cl)
+plot(ndvi_dif1, col=cl)
+plot(ndvi_dif2, col=cl)
 
 par(mfrow=c(1,2))
-plot(dvi_dif1, col=cl)
-plot(dvi_dif2, col=cl)
+plot(ndvi_dif1, col=cl)
+plot(ndvi_dif2, col=cl)
 # *************************************** colorazione 
 
 
