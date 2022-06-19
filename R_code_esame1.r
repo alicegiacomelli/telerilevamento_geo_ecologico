@@ -80,21 +80,21 @@ patchwork1 + plot_annotation(
 
 # salvataggio 
 pdf("Immagini_colori_naturali_2018.pdf")
-print(g18_crop + plot_annotation(
+g18_crop + plot_annotation(
   title = 'Immagine colori naturali - anno 2018',
-  subtitle = 'Boschi sopra Levico Terme'))
+  subtitle = 'Boschi sopra Levico Terme')
 dev.off()
 
 pdf("Immagini_colori_naturali_2019.pdf")
-print(g19_crop + plot_annotation(
+g19_crop + plot_annotation(
   title = 'Immagine colori naturali - anno 2019',
-  subtitle = 'Boschi sopra Levico Terme'))
+  subtitle = 'Boschi sopra Levico Terme')
 dev.off()
 
 pdf("Immagini_colori_naturali_2022.pdf")
-print(g22_crop + plot_annotation(
+g22_crop + plot_annotation(
   title = 'Immagine colori naturali - anno 2022',
-  subtitle = 'Boschi sopra Levico Terme'))
+  subtitle = 'Boschi sopra Levico Terme')
 dev.off()
 
 
@@ -348,15 +348,15 @@ patchwork_barplot + plot_annotation(
   subtitle = 'Confonto 2018-2022')
 
 pdf("barplot_percentuali_landcover_2018.pdf")
-print(barplot18 + plot_annotation(
+barplot18 + plot_annotation(
   title = 'Percentuali landcover 2018',
-  subtitle = 'Boschi sopra Levico Terme'))
+  subtitle = 'Boschi sopra Levico Terme')
 dev.off()    
 
 pdf("barplot_percentuali_landcover_2022.pdf")
-print(barplot18 + plot_annotation(
+barplot18 + plot_annotation(
   title = 'Percentuali landcover 2022',
-  subtitle = 'Boschi sopra Levico Terme'))
+  subtitle = 'Boschi sopra Levico Terme')
 dev.off()    
 
 
@@ -390,6 +390,9 @@ par(mfrow=(1,3))
 plot(sd1, col=cl)
 plot(sd2, col=cl)
 plot(sd3, col=cl)
+
+# salvataggio immagini 
+
 
 ############################
 
