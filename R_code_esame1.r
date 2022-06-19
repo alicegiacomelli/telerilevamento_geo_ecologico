@@ -49,7 +49,7 @@ g18 + g19 + g22
   
 # ritaglio 
 plotRGB(vaia22, 1, 2, 3, stretch = "lin") 
-drawExtent(show=TRUE, col="red") 
+# drawExtent(show=TRUE, col="red") 
 
 # class      : Extent 
 # xmin       : 672207.6 
@@ -79,23 +79,23 @@ patchwork1 + plot_annotation(
 
 
 # salvataggio 
-pdf("Immagini_colori_naturali_2018.pdf")
-g18_crop + plot_annotation(
-  title = 'Immagine colori naturali - anno 2018',
-  subtitle = 'Boschi sopra Levico Terme')
-dev.off()
+# pdf("Immagini_colori_naturali_2018.pdf")
+# g18_crop + plot_annotation(
+  # title = 'Immagine colori naturali - anno 2018',
+  # subtitle = 'Boschi sopra Levico Terme')
+# dev.off()
 
-pdf("Immagini_colori_naturali_2019.pdf")
-g19_crop + plot_annotation(
-  title = 'Immagine colori naturali - anno 2019',
-  subtitle = 'Boschi sopra Levico Terme')
-dev.off()
+# pdf("Immagini_colori_naturali_2019.pdf")
+# g19_crop + plot_annotation(
+  # title = 'Immagine colori naturali - anno 2019',
+  # subtitle = 'Boschi sopra Levico Terme')
+# dev.off()
 
-pdf("Immagini_colori_naturali_2022.pdf")
-g22_crop + plot_annotation(
-  title = 'Immagine colori naturali - anno 2022',
-  subtitle = 'Boschi sopra Levico Terme')
-dev.off()
+# pdf("Immagini_colori_naturali_2022.pdf")
+# g22_crop + plot_annotation(
+  # title = 'Immagine colori naturali - anno 2022',
+  # subtitle = 'Boschi sopra Levico Terme')
+# dev.off()
 
 
 
@@ -171,20 +171,20 @@ patchwork2 + plot_annotation(
 
 # salvo immagini 
 
-pdf("NIR_rosso_anno_2018.pdf")
-ggRGB(v18_bande, 4, 3, 2, stretch="lin") +
-      ggtitle("2018")
-dev.off()
+# pdf("NIR_rosso_anno_2018.pdf")
+# ggRGB(v18_bande, 4, 3, 2, stretch="lin") +
+      # ggtitle("2018")
+# dev.off()
 
-pdf("NIR_rosso_anno_2019.pdf")
-ggRGB(v19_bande, 4, 3, 2, stretch="lin") +
-      ggtitle("2019")
-dev.off()
+# pdf("NIR_rosso_anno_2019.pdf")
+# ggRGB(v19_bande, 4, 3, 2, stretch="lin") +
+      # ggtitle("2019")
+# dev.off()
 
-pdf("NIR_rosso_anno_2022.pdf")
-ggRGB(v22_bande, 4, 3, 2, stretch="lin") +
-      ggtitle("2022")
-dev.off()
+# pdf("NIR_rosso_anno_2022.pdf")
+# ggRGB(v22_bande, 4, 3, 2, stretch="lin") +
+      # ggtitle("2022")
+# dev.off()
 
 # DVI 
 
@@ -195,10 +195,11 @@ dvi19 = v19_bande[[4]] - v19_bande[[3]]
 dvi22 = v22_bande[[4]] - v22_bande[[3]]
 
 # NDVI 
+# range -1, 1
 
-ndvi18 <- dvi18 / v18_bande[[4]] + v18_bande[[3]]
-ndvi19 <- dvi19 / v19_bande[[4]] + v19_bande[[3]]
-ndvi22 <- dvi22 / v22_bande[[4]] + v22_bande[[3]]
+ndvi18 <- dvi18 / (v18_bande[[4]] + v18_bande[[3]])
+ndvi19 <- dvi19 / (v19_bande[[4]] + v19_bande[[3]])
+ndvi22 <- dvi22 / (v22_bande[[4]] + v22_bande[[3]])
 
 # plot
 cl <- colorRampPalette(c('darkblue','green','red','black'))(100)
@@ -213,24 +214,24 @@ plot(ndvi19, col=cl)
 plot(ndvi22, col=cl)
 
 # salvataggio
-pdf("ndvi_2018.pdf")
-plot(ndvi18, col=cl)
-dev.off()
+# pdf("ndvi_2018.pdf")
+# plot(ndvi18, col=cl)
+# dev.off()
 
-pdf("ndvi_2019.pdf")
-plot(ndvi19, col=cl)
-dev.off()
+# pdf("ndvi_2019.pdf")
+# plot(ndvi19, col=cl)
+# dev.off()
 
-pdf("ndvi_2022.pdf")
-plot(ndvi22, col=cl)
-dev.off()
+# pdf("ndvi_2022.pdf")
+# plot(ndvi22, col=cl)
+# dev.off()
 
 
 # differenze NDVI 
 
 # 2018 / 2019
 ndvi_dif1 = ndvi18 - ndvi19
-ndvi_dif2 = ndvi19 -ndvi22
+ndvi_dif2 = ndvi19 - ndvi22
 
 cl <- colorRampPalette(c('darkblue','yellow','red','white'))(100)
 
@@ -240,8 +241,11 @@ plot(ndvi_dif2, col=cl)
 par(mfrow=c(1,2))
 plot(ndvi_dif1, col=cl)
 plot(ndvi_dif2, col=cl)
-# *************************************** colorazione 
 
+# pdf("differenze_ndvi_2018_2019.pdf")
+# plot(ndvi_dif1, col=cl) +
+# title(main = "Differenze NDVI 2018/2019")
+# dev.off()
 
 
 ###### landcover 
@@ -261,30 +265,30 @@ plot(landcover18$map)
 plot(landcover22$map)
 
 # salvataggio 
-pdf("landcover_2018.pdf")
-plot(landcover18$map)
-dev.off()
+# pdf("landcover_2018.pdf")
+# plot(landcover18$map)
+# dev.off()
 
-pdf("landcover_2022.pdf")
-plot(landcover22$map)
-dev.off()
+# pdf("landcover_2022.pdf")
+# plot(landcover22$map)
+# dev.off()
 
 
 # frequenza
 
 freq(landcover18$map)
 #      value    count
-# [1,]     1    61505 (città)
-# [2,]     2    62300 (acqua)
-# [3,]     3   269484 (terreno)
-# [4,]     4   348465 (bosco)
+# [1,]     1   269484 (terreno)
+# [2,]     2   348465 (bosco)
+# [3,]     3    62300 (acqua)
+# [4,]     4    61505 (città)
 
 freq(landcover22$map)
-#      value  count
-# [1,]     1 296801 (terreno)
-# [2,]     2  82523 (città)
-# [3,]     3  57954 (acqua)
-# [4,]     4 304476 (bosco)
+#      value   count
+# [1,]     1   57954 (acqua)
+# [2,]     2   82523 (città)
+# [3,]     3  296801 (terreno)
+# [4,]     4  304476 (bosco)
 
 # numero totale di pixel 
 v18_bande
@@ -347,17 +351,17 @@ patchwork_barplot + plot_annotation(
   title = 'Percentuali landcover',
   subtitle = 'Confonto 2018-2022')
 
-pdf("barplot_percentuali_landcover_2018.pdf")
-barplot18 + plot_annotation(
-  title = 'Percentuali landcover 2018',
-  subtitle = 'Boschi sopra Levico Terme')
-dev.off()    
+# pdf("barplot_percentuali_landcover_2018.pdf")
+# barplot18 + plot_annotation(
+  # title = 'Percentuali landcover 2018',
+  # subtitle = 'Boschi sopra Levico Terme')
+# dev.off()    
 
-pdf("barplot_percentuali_landcover_2022.pdf")
-barplot18 + plot_annotation(
-  title = 'Percentuali landcover 2022',
-  subtitle = 'Boschi sopra Levico Terme')
-dev.off()    
+# pdf("barplot_percentuali_landcover_2022.pdf")
+# barplot18 + plot_annotation(
+  # title = 'Percentuali landcover 2022',
+  # subtitle = 'Boschi sopra Levico Terme')
+# dev.off()    
 
 
 ### etertogeneità 
@@ -370,15 +374,15 @@ nir3 <- v22_bande[[4]]
 
 # 3 nuovi file raster con variabilità
 # calcola la deviazione standard 
-sd1 <- focal(nir1, matrix(1/49, 7, 7), fun=sd)
+sd1 <- focal(nir1, matrix(1/9, 3, 3), fun=sd)
 # nir : immagine
 # matrice formata da 3*3 pixel, matrice : 1/9
 # colonne : 3
 # righe : 3
 # funzione : deviazione standard sd    
 
-sd2 <- focal(nir2, matrix(1/49, 7, 7), fun=sd)
-sd3 <- focal(nir3, matrix(1/49, 7, 7), fun=sd)
+sd2 <- focal(nir2, matrix(1/9, 3, 3), fun=sd)
+sd3 <- focal(nir3, matrix(1/9, 3, 3), fun=sd)
 
 # plot 
 
@@ -386,7 +390,7 @@ plot(sd1, col=cl)
 plot(sd2, col=cl)
 plot(sd3, col=cl)
 
-par(mfrow=(1,3))
+par(mfrow=c(1,3))
 plot(sd1, col=cl)
 plot(sd2, col=cl)
 plot(sd3, col=cl)
@@ -418,9 +422,9 @@ patchwork4 + plot_annotation(
 
 # salvataggio 
 pdf("eterogeneità.pdf")
-print(patchwork4 + plot_annotation(
+patchwork4 + plot_annotation(
   title = 'Eterogeneità'
-  subtitle = 'Levico Terme nel 2018, 2019, 2022'))
+  subtitle = 'Levico Terme nel 2018, 2019, 2022')
 dev.off()
 
 
