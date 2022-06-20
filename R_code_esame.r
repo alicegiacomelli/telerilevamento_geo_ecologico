@@ -486,7 +486,6 @@ patchwork_barplot + plot_annotation(
 # richiamo banda NIR
 nir1 <- v18_bande[[4]]
 nir2 <- v19_bande[[4]]
-nir3 <- v22_bande[[4]]
 
 # creo 3 nuovi file raster con variabilità
 # la variabilità la calcolo attraverso la deviazione standard 
@@ -494,7 +493,6 @@ nir3 <- v22_bande[[4]]
 # assegnazione del valore al pixel centrale 
 sd1 <- focal(nir1, matrix(1/9, 3, 3), fun=sd)
 sd2 <- focal(nir2, matrix(1/9, 3, 3), fun=sd)
-sd3 <- focal(nir3, matrix(1/9, 3, 3), fun=sd)
 
 # utilizzo una palette specifica 
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
@@ -502,24 +500,21 @@ clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red
 # plot eterogeneità
 plot(sd1, col=clsd)
 plot(sd2, col=clsd)
-plot(sd3, col=clsd)
 
 # creo un multiframe tramite la funzione par del pacchetto raster
-par(mfrow=c(1,3))
+par(mfrow=c(1,2))
 plot(sd1, col=clsd)
 plot(sd2, col=clsd)
-plot(sd3, col=clsd)
+
 
 # SALVATAGGIO 
 
 # pdf("eterogeneità.pdf")
-# par(mfrow=c(1,3))
+# par(mfrow=c(1,2))
 # plot(sd1, col=clsd) +
 # title(main="Variabilità 2018")
 # plot(sd2, col=clsd) +
 # title(main="2019")
-# plot(sd3, col=clsd) +
-# title(main="2018")
 # dev.off()
 
 
