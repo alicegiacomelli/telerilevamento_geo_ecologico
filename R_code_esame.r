@@ -122,7 +122,7 @@ g22_crop <- ggRGB(v22, 1, 2, 3, stretch = "lin") +
 patchwork1 <- g18_crop + g19_crop + g22_crop
 patchwork1 + plot_annotation(
   title = 'Immagini colori naturali',
-  subtitle = 'Levico Terme nel 2018, 2019, 2022')
+  subtitle = 'Boschi sopra Levico Terme nel 2018, 2019, 2022')
 
 
 # SALVATAGGIO 
