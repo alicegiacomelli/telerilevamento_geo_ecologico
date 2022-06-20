@@ -1,0 +1,110 @@
+\documentclass{beamer}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+
+\usetheme{Berkeley}
+\usecolortheme{spruce}
+
+\title{Analisi multitemporale dei boschi sopra Levico Terme negli anni 2018, 2019 e 2022}
+\subtitle{come il territorio è cambiato in seguito alla tempesta Vaia}
+\institute{Alma Mater Studiorum - Università di Bologna \\ Telerilevamento geo-ecologico}
+\author{Alice Giacomelli \\ Prof. Duccio Rocchini}
+\date{2021/2022}
+
+\begin{document}
+
+\maketitle
+
+\AtBeginSection[]
+{
+\begin{frame}
+\frametitle{Indice}
+\tablecontents[currentsection, currentsubsection, currentsubsubsection]
+\end{frame}
+}
+
+\AtBeginSection[]
+{
+\begin{frame}
+\frametitle{Indice}
+\tablecontents[currentdubsection]
+\end{frame}
+}
+
+\section{Introduzione}
+
+\begin{frame}{Inquadramento geografico}
+\begin{itemize}
+    \item Il territorio preso in analisi è la zona boschiva che si trova sopra Levico Terme, in Trentino Alto Adige.
+    % \includegraphics[]{}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Tempesta Vaia}
+\begin{itemize}
+    \item La tempesta Vaia è stata un evento metereologico estremo che ha interessato la zona del Triveneto dal 26 al 30 ottobre 2018.
+    \item Ha causato l'abbattimento di 42 milioni di alberi (dato mai registrato in epoca recente in Italia), su una superficie di 41 mila ettari di territorio.
+\end{itemize}
+\end{frame}
+
+\section{Progetto}
+
+\begin{frame}{Dati di partenza}
+Immagini satellitari da Sentinel 2: 
+\bigskip
+\begin{itemize}
+    \item immagine di agosto 2018 (pre-tempesta) 
+    \item immagine di giugno 2019 (post-tempesta)
+    \item immagine di giugno 2022
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{Obiettivi del progetto}
+L'obiettivo del mio progetto è osservare come cambia il territorio in seguito alla tempesta.\\ 
+\bigskip
+\begin{itemize}
+    \item il calcolo dell'NDVI (indice spettrale) per valutare la salute della vegetazione
+    \item come cambiano le percentuali di landcover dal 2018 al 2022
+    \item un confronto tra le variabilità dei diversi anni
+\end{itemize}
+\end{frame}
+
+\section{Anlisi (codice e osservazioni}
+
+\subsection{Importazione immagini}
+\subsubsection{Codice}
+\subsection{Osservazioni}
+
+\subsection{Visualizzazione immagini}
+\subsubsection{Codice}
+\subsection{Osservazioni}
+
+\subsection{Calcolo NDVI}
+\subsubsection{Codice}
+\subsection{Osservazioni}
+
+\subsection{Calcolo Landcover}
+\subsubsection{Codice}
+\subsection{Osservazioni}
+
+\subsection{Variabilità}
+\subsubsection{Codice}
+\subsection{Osservazioni}
+
+
+\section{Conclusione}
+
+
+
+
+
+
+
+
+
+
+\end{document}
