@@ -1,10 +1,20 @@
 ########## TELERILEVAMENTO GEO-ECOLOGICO 2021-2022 ##########
 
 # indice:
-# 1. 
-# 2.
-# 3.
-# 4. 
+
+# 01. REMOTE SENSING...............................   21
+# 02. INDICI SPETTRALI.............................  150
+# 03. TIMES SERIES GREENLAND.......................  287
+# 04. TIMES SERIE LOCKDOWN.........................  355
+# 05. CLASSIFICATION...............................  437
+# 06. LANDCOVER....................................  535
+# 07. VARIABILITY 1................................  704
+# 08. MULTIVARIATE ANALYSIS........................  806
+# 09. VARIABILITY 2................................  913
+# 10. LIDAR........................................ 1056
+# 11. SDM.......................................... 1156
+# 12. COLORIST..................................... 1256
+# 13. FUNCTIONS.................................... 1383
 
 
 #############################################################################################################
@@ -138,7 +148,7 @@ plotRGB(l2011, r=4, g=3, b=2, stretch="lin")
 
 ###########################################################################################################
 
-# ARGOMENT0 2: INDICI SPETTRALI 
+########## ARGOMENT0 2: INDICI SPETTRALI ##########
 
 #### day 1
 
@@ -214,7 +224,7 @@ dev.off()
 # plot differenza DVI
 plot(dvi_dif, col=cld)
 
-# day 2
+#### day 2 ####
 
 # Range DVI (8 bit): -255 a 255
 # Range NDVI normalizzato (8 bit): -1 a 1 
@@ -421,6 +431,7 @@ plot(difen, col=cldif)
 # plot RGB di 3 file 
 # stretch lin
 plotRGB(en, r=1, g=7, b=13, stretch="lin")
+
 
 ###########################################################################################################
 
@@ -1308,7 +1319,7 @@ map_single(met1_distill,p1custom)
 # legenda 
 legend_timecycle(pal,origin_label = "1 jan")
 
-######### esempio 2 #########
+#### esempio 2 ####
 
 # caricamento dato 
 # ciclo lineare 
@@ -1341,7 +1352,7 @@ map_single(m2_distill,pal2,lambda_i = -10)
 legend_timeline(pal2,time_labels = c("2 aprile", "11 aprile"))
 
 
-######### esempio 3 #########
+#### esempio 3 ####
 
 # dato 
 data("elephant_ud")
@@ -1401,9 +1412,4 @@ for(i in seq(1, n)) {
 print(cheer_string)
 }
 }
-
-
-
-
-
 
