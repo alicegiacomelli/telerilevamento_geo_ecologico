@@ -74,6 +74,10 @@ vaia22 # info immagine
 g18 <- ggRGB(vaia18, 1, 2, 3, stretch = "lin") + 
   ggtitle("2018")
 
+# stretch lineare: dai valori originali si crea una nuova banda con valori da 0 a 100
+# si ampliano i valori,riscalandoli attraverso una funzione lineare
+# aumenta potenza visualizzazione (contrasto)
+
 g19 <- ggRGB(vaia19, 1, 2, 3, stretch = "lin") + 
   ggtitle("2019")
   
@@ -456,6 +460,8 @@ barplot18 <- ggplot(multitemporal, aes(x=class, y=percent_2018, color=class)) +
              geom_bar(stat="identity", fill="white") +
              ggtitle("2018")
 barplot18 # visualizzazione
+# stat = "legenda"
+# fill = "colore bande"
 
 barplot22 <- ggplot(multitemporal, aes(x=class, y=percent_2022, color=class)) +
              geom_bar(stat="identity", fill="white") +
