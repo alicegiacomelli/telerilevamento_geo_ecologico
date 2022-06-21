@@ -89,7 +89,7 @@ g18 + g19 + g22
 # plotto l'immagine 
 plotRGB(vaia22, 1, 2, 3, stretch = "lin") 
 # tramite la funzione drawExtent del pacchetto raster
-# selezioni direttamente sull'immagine la zona d'interesse
+# seleziono direttamente sull'immagine la zona d'interesse
 # drawExtent(show=TRUE, col="red") 
 
 # class      : Extent 
@@ -283,7 +283,7 @@ ndvi22_plot <- plot(ndvi22, col=cl)
 
 # multiframe tramite funzione par del pacchetto raster 
 # con 1 riga e 3 colonne 
-ndvi1 <- par(mfrow=c(1,3))
+par(mfrow=c(1,3))
 plot(ndvi18, col=cl)
 plot(ndvi19, col=cl)
 plot(ndvi22, col=cl)
