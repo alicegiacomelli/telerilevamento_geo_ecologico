@@ -1,5 +1,5 @@
-########## ANALISI MULTITEMPORALE DEI BOSCHI SOPRA LEVICO TERME NEL 2018, 2019, 2022 ########## 
-       ########## COME IL TERRITORIO E' CAMBIATO IN SEGUITO ALLA TEMPESTA VAIA ##########
+########## ANALISI DEI BOSCHI SOPRA LEVICO TERME NEGLI ANNI 2018, 2019, 2022 ########## 
+      ####### COME IL TERRITORIO E' CAMBIATO IN SEGUITO ALLA TEMPESTA VAIA #######
 
 
 # impatto della tempesta Vaia nei boschi sopra Levico Terme, una delle zone più colpite da questa calamità naturale.
