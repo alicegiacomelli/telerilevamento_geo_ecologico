@@ -51,13 +51,13 @@ setwd("/Users/alicegiacomelli/Desktop/lab/vaia")
 # importazione tramite funzione raster brick che mi permette di caricare più bande contemporaneamente
 
 vaia18 <- brick("T32TPS_20180827T101021_TCI_10m.jp2")
-vaia18
+vaia18 # info immagine
 
 vaia19 <- brick("T32TPS_20190628T101039_TCI_10m.jp2")
-vaia19
+vaia19 # info immagine
 
 vaia22 <- brick("T32TPS_20220612T100559_TCI_10m.jp2")
-vaia22
+vaia22 # info immagine 
 
 # immagini a 8 bit 
 # risoluzione 10m 
@@ -108,6 +108,7 @@ v19 <- crop(vaia19, e)
 v22 <- crop(vaia22, e)
 
 # plotto le immagini ritagliate ottenute con ggplot 
+# + ggtitle per titolo
 g18_crop <- ggRGB(v18, 1, 2, 3, stretch = "lin") + 
   ggtitle("2018")
 
@@ -173,15 +174,19 @@ vaia18_bande # per vedere nomi delle bande
 
 # creo una lista con pattern in comune = 1039_B
 list19 <- list.files(pattern="1039_B")
+# importo con la funzione lapply del pacchetto raster
 import19 <- lapply(list19, raster)
+# unisco componenti della list19 in un unico blocco con la funzione raster stack del pacchetto raster
 vaia19_bande <- stack(import19) 
-vaia19_bande 
+vaia19_bande # per vedere nomi delle bande
 
 # creo una lista con pattern in comune =  0559_B
 list22 <- list.files(pattern="0559_B")
+# importo con la funzione lapply del pacchetto raster
 import22 <- lapply(list22, raster)
+# unisco componenti della list22 in un unico blocco con la funzione raster stack del pacchetto raster
 vaia22_bande <- stack(import22) 
-vaia22_bande 
+vaia22_bande # per vedere nomi delle bande
 
 # ritaglio le immagini appena importato con gli stessi valori calcolati precedentemente (drawExtend)
 # tramite la funzione crop del pacchetto raster 
@@ -198,17 +203,17 @@ v22_bande
 # al posto del rosso nella banda RGB ci metto NIR 
 g18_bande <- ggRGB(v18_bande, 4, 3, 2, stretch="lin") +
       ggtitle("2018")
-g18_bande
+g18_bande # plot
 
 g19_bande <- ggRGB(v19_bande, 4, 3, 2, stretch="lin") +
       ggtitle("2019")
-g19_bande
+g19_bande # plot
 
 g22_bande <- ggRGB(v22_bande, 4, 3, 2, stretch="lin") +
       ggtitle("2022")
-g22_bande
+g22_bande # plot
 
-# creo un multiframe con patchwork
+# creo un multiframe con funzione patchwork del pacchetto patchwork (solo con ggplot2)
 patchwork2 <- g18_bande + g19_bande + g22_bande
 patchwork2 + plot_annotation(
   title = 'Immagini con NIR sulla prima banda',
@@ -250,10 +255,13 @@ patchwork2 + plot_annotation(
 # Difference Vegetation Index
 
 # Differenza NIR e red 
+# banda 4 = NIR
+# banda 3 = red
 dvi18 = v18_bande[[4]] - v18_bande[[3]]
 dvi19 = v19_bande[[4]] - v19_bande[[3]]
 dvi22 = v22_bande[[4]] - v22_bande[[3]]
 
+# informazioni
 dvi18
 dvi19
 dvi22
@@ -264,10 +272,12 @@ dvi22
 
 # range -1, 1
 
-ndvi18 <- dvi18 / (v18_bande[[4]] + v18_bande[[3]])
-ndvi19 <- dvi19 / (v19_bande[[4]] + v19_bande[[3]])
-ndvi22 <- dvi22 / (v22_bande[[4]] + v22_bande[[3]])
+# dvi / somma banda NIR e red
+ndvi18 = dvi18 / (v18_bande[[4]] + v18_bande[[3]])
+ndvi19 = dvi19 / (v19_bande[[4]] + v19_bande[[3]])
+ndvi22 = dvi22 / (v22_bande[[4]] + v22_bande[[3]])
 
+# informazioni
 ndvi18  
 ndvi19
 ndvi22
@@ -436,7 +446,7 @@ percent_2022 <- c(41.04811, 40.0134, 11.12539, 7.813102)
 
 # creo un dataframe tramite la funzione data.frame (funzione base di R)
 multitemporal <- data.frame(class, percent_2018, percent_2022)
-multitemporal
+multitemporal # info
 
 
 # creo dei barplot (grafici a istogrammi)
@@ -445,12 +455,12 @@ multitemporal
 barplot18 <- ggplot(multitemporal, aes(x=class, y=percent_2018, color=class)) +
              geom_bar(stat="identity", fill="white") +
              ggtitle("2018")
-barplot18
+barplot18 # visualizzazione
 
 barplot22 <- ggplot(multitemporal, aes(x=class, y=percent_2022, color=class)) +
              geom_bar(stat="identity", fill="white") +
              ggtitle("2022")
-barplot22
+barplot22 # visualizzazione 
 
 # creo un multiframe tramite la funzione patchwork del pacchetto patchwork 
 patchwork_barplot <- barplot18 + barplot22
