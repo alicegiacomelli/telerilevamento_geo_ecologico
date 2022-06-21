@@ -1,0 +1,237 @@
+\documentclass[10pt]{beamer}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+
+\usetheme{Frankfurt}
+\usecolortheme{spruce}
+
+\title{Analisi multitemporale dei boschi sopra Levico Terme negli anni 2018, 2019 e 2022}
+\subtitle{come il territorio è cambiato in seguito alla tempesta Vaia}
+\institute{Alma Mater Studiorum - Università di Bologna \\ Telerilevamento geo-ecologico}
+\author{Alice Giacomelli \\ Prof. Duccio Rocchini}
+\date{2021/2022}
+
+\begin{document}
+
+\maketitle
+
+\AtBeginSection[]
+{
+\begin{frame}
+\frametitle{Indice}
+\tableofcontents[currentsection, currentsubsection, currentsubsubsection]
+\end{frame}
+}
+
+
+\section{Introduzione}
+
+\subsection{Inquadramento geografico}
+\begin{frame}{Inquadramento geografico}
+\begin{itemize}
+    \item Il territorio preso in analisi è la zona boschiva che si trova sopra Levico Terme, in Trentino Alto Adige.
+    \bigskip
+    \centering
+    \includegraphics[width=250]{lago.jpeg}
+\end{itemize}
+\end{frame}
+
+% 
+
+\begin{frame}{Tempesta Vaia}
+\begin{itemize}
+    \item La tempesta Vaia è stata un evento metereologico estremo che ha interessato la zona del Triveneto dal \textbf{26 al 30 ottobre 2018}.
+    \item Ha causato \textbf{l'abbattimento di 42 milioni di alberi} (dato mai registrato in epoca recente in Italia), su una superficie di 41 mila ettari di territorio.
+\end{itemize}
+\end{frame}
+
+\subsection{Progetto}
+
+\begin{frame}{Dati di partenza}
+Immagini satellitari da \textbf{Sentinel 2}: 
+\bigskip
+\begin{itemize}
+    \item immagine di \textbf{agosto 2018} (pre-tempesta) 
+    \item immagine di \textbf{giugno 2019} (post-tempesta)
+    \item immagine di \textbf{giugno 2022}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Obiettivi del progetto}
+L'obiettivo del mio progetto è osservare come cambia il territorio in seguito alla tempesta.\\ 
+\bigskip
+\begin{itemize}
+    \item il calcolo dell'\textbf{NDVI} per valutare la salute della vegetazione
+    \item come cambiano le percentuali di \textbf{landcover} dal 2018 al 2022
+    \item un confronto tra la \textbf{variabilità} del 2018 e del 2019
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Analisi (codice e osservazioni)}
+
+\subsection{Importazione immagini}
+
+\subsubsection{Codice}
+\begin{frame}{Codice - Importazione immagini}
+\begin{scriptsize}
+\lstinputlisting[language=R]{IMPORTAZIONE DATI.txt}
+\end{scriptsize}
+\end{frame}
+\subsubsection{Osservazioni}
+\begin{frame}{Osservazioni}
+\centering
+\includegraphics[width=150]{Immagini_colori_naturali_20181.pdf}
+\includegraphics[width=150]{Immagini_colori_naturali_20191.pdf} 
+\smallskip
+\includegraphics[width=150]{Immagini_colori_naturali_20221.pdf} 
+\end{frame}
+
+\begin{frame}{Osservazioni}
+
+Da una prima analisi si può vedere come la situazioni cambi tra il 2018 e 2022: 
+\begin{itemize}
+\item Nella prima immagine del \textbf{2018} salta all'occhio il \textbf{verde} della zona, mentre nel \textbf{2019} si possono notare le vaste \textbf{aree marroni} che si sono sostituite ai boschi.\\ 
+\item L'immagine del \textbf{2022}, è maggiormente \textbf{verde} rispetto a quella del 2019, ma non raggiunge i livelli del 2018. 
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Visualizzazione immagini}
+
+\subsubsection{Codice}
+\begin{frame}{Codice - Visualizzazione immagini}
+\begin{scriptsize}
+\lstinputlisting[language=R]{VISUALIZZAZIONE DATI.txt}
+\end{scriptsize}
+\end{frame}
+
+\subsubsection{Osservazioni}
+\begin{frame}{Osservazioni}
+\centering
+\includegraphics[width=150]{NIR_rosso_anno_2018.pdf}
+\includegraphics[width=150]{NIR_rosso_anno_2019.pdf}
+\includegraphics[width=150]{NIR_rosso_anno_2022.pdf}
+\end{frame}
+
+\begin{frame}{Osservazioni}
+\begin{itemize}
+    \item In questa nuova visualizzazione \textbf{il rosso rappresenta la vegetazione!}\\
+    \item Ciò che non è vegetazione, è rappresentato in azzurrino/verde. \\
+\item Il \textbf{contrasto} permette di visualizzare gli effetti della tempesta Vaia in maniera ancora più evidente.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Calcolo NDVI}
+\subsubsection{Codice}
+\begin{frame}{Codice - NDVI}
+\begin{scriptsize}
+\lstinputlisting[language=R]{indici.txt}
+\end{scriptsize}
+\end{frame}
+
+\subsubsection{Osservazioni}
+\begin{frame}{Osservazioni}
+\begin{itemize}
+\item La vegetazione assorbe la radiazione solare in diverse bande (in diversi intervalli di frequenza e lunghezze d’onda) e ne riemette una percentuale differente in ciascuna di esse. 
+\item La percentuale di \textbf{radiazione riflessa} in bande specifiche, come quelle del vicino infrarosso (NIR), del rosso (RED), indica lo \textbf{stato di salute della pianta}
+\end{itemize}
+
+\begin{equation}
+    NDVI = \frac{NIR - RED}{NIR + RED} 
+\end{equation}
+\end{frame}
+
+\begin{frame}{Osservazioni}
+\centering
+\includegraphics[width=150]{ndvi_2018.pdf}
+\begin{itemize}
+    \item Nel grafico del 2018 la maggior parte del territorio ricade nei \textbf{valori intorno all'1}, con colorazione vicino al bianco. Questo significa \textbf{copertura vegetale completa con alta vigoria}.\end{itemize}
+\end{frame}
+
+\begin{frame}{Osservazioni}
+\centering
+\includegraphics[width=150]{ndvi_2019.pdf}
+\begin{itemize}
+    \item Nel grafico del 2019 il territorio cambia colore, molte zone diventano rosse, cioè hanno dei \textbf{valori inferiori allo 0.5}. Questo significa che il \textbf{grado di salute e vigoria della vegetazione è diminuito}.\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Calcolo Landcover}
+\subsubsection{Codice}
+\begin{frame}{Codice - Landcover}
+\begin{scriptsize}
+\lstinputlisting[language=R]{landcover.txt}
+\end{scriptsize}
+\end{frame}
+
+\subsubsection{Osservazioni}
+\begin{frame}{Osservazioni}
+\centering
+\includegraphics[width=150]{landcover_2018.pdf}
+\includegraphics[width=150]{landcover_2022.pdf}
+\begin{itemize}
+    \item Da una prima osservazione, nonostante i colori diversi, si possono notare delle zone dove il \textbf{confine di cambio colore varia}. 
+    \item Inoltre c'è maggiore \textbf{frammentarietà dei colori}. 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Osservazioni}
+\centering
+\includegraphics[width=140]{barplot_percentuali_landcover_2018.pdf}
+\includegraphics[width=140]{barplot_percentuali_landcover_2022.pdf} 
+\begin{itemize}
+\item Dalle percentuali si può vedere che il bosco, tra il 2018 e il 2022, è diminuito \textbf{dal 47\% al 41\%}. \\
+\item Altro dato curioso è anche l'incremento della citta: dall'8\% nel 2018 all'11\% nel 2022.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Variabilità}
+\subsubsection{Codice}
+\begin{frame}{Codice - variabilità}
+\begin{scriptsize}
+\lstinputlisting[language=R]{variabilit.txt}
+\end{scriptsize}
+\end{frame}
+\subsubsection{Osservazioni}
+\begin{frame}{Osservazioni}
+\centering
+\includegraphics[width=200]{eterogeneità.pdf}
+\end{frame}
+
+\begin{frame}{Osservazioni}
+\begin{itemize}
+    \item Con il calcolo della variabilità si nota come questa sia maggiore nell'anno 2018, in quanto \textbf{maggiore variabilità corrisponde a maggior biodiversità}, data dalla buona salute e dall'abbondanza di alberi.\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusione}
+
+\begin{frame}{Conclusioni}
+\begin{itemize}
+\item Dalle immagini satellitari analizzate si può notare, quindi, che tra il 2018 e il 2022, il \textbf{bosco} ha subito una \textbf{diminuzione, del 5\%}. \\
+\item \textbf{La salute della vegetazione è diminuita} dal 2018 al 2019.\\
+\item L'\textbf{eterogeneità} è elevata nell'\textbf{anno 2018} a causa della variabilità del terreno. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\centering
+\textbf{Codice completo} del progetto al seguente link GitHub 
+\url{https://github.com/alicegiacomelli/telerilevamento_geo_ecologico/blob/main/R_code_esame.r} \\
+\bigskip
+\textbf{Grazie per l'attenzione!}
+\end{frame}
+
+
+\end{document}
